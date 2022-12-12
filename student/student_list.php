@@ -16,61 +16,19 @@
                         <div class="col-sm-12">
                             <div class="home-tab">
 
-                                <div class="statistics-details row">
-                                    <div class="col">
-                                        <div class="card bg-primary card-rounded">
-                                            <div class="card-body">
-                                                <h4 class="card-title card-title-dash text-white mb-4">Student</h4>
-                                                <div>
-                                                    <div>
-                                                        <h2 class="text-info">100</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="card bg-primary card-rounded">
-                                            <div class="card-body">
-                                                <h4 class="card-title card-title-dash text-white mb-4">Staff</h4>
-                                                <div>
-                                                    <div>
-                                                        <h2 class="text-info">50</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="card bg-primary card-rounded">
-                                            <div class="card-body">
-                                                <h4 class="card-title card-title-dash text-white mb-4">Teacher</h4>
-                                                <div>
-                                                    <div>
-                                                        <h2 class="text-info">200</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="card bg-primary card-rounded">
-                                            <div class="card-body">
-                                                <h4 class="card-title card-title-dash text-white mb-4">Course</h4>
-                                                <div>
-                                                    <div>
-                                                        <h2 class="text-info">12</h2>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <!-- title -->
+                                <div class="statistics-details d-flex align-items-center justify-content-between">
+                                    <h2>Student List</h2>
+                                    <form class="search-form d-flex align-items-center gap-3" action="#">
+                                        <i class="icon-search"></i>
+                                        <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+                                    </form>
                                 </div>
 
-                                <!-- table -->
+                                <!-- content -->
+                                <!-- student list -->
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">School head</h4>
                                         <div class="table-responsive">
                                             <table class="table table-striped">
                                                 <thead>
@@ -140,10 +98,10 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
+                                    </div>
                                     </div>
                                 </div>
-                                <!-- table -->
+                                <!-- student list -->
 
                             </div>
                         <div>
