@@ -1,3 +1,6 @@
+<?php include_once("./services/insertUser.php") ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,34 +36,70 @@
                     <h3>UA University</h3>
                 </div>
                 <h6 class="fw-light">Register new user.</h6>
-                <form class="pt-3">
+                <form class="pt-3" method="POST">
                     <div class="row">
                         <div class="form-group col">
-                            <input type="text" class="form-control form-control-lg ps-3" name="fname" id="fname" placeholder="First name">
+                            <input 
+                                type="text" 
+                                class="form-control form-control-lg ps-3" 
+                                name="fname" 
+                                id="fname" 
+                                placeholder="First name"
+                            >
                         </div>
                         <div class="form-group col">
-                            <input type="text" class="form-control form-control-lg ps-3" name="lname" id="lname" placeholder="Last Name">
+                            <input 
+                                type="text" 
+                                class="form-control form-control-lg ps-3" 
+                                name="lname" 
+                                id="lname" 
+                                placeholder="Last Name"
+                            >
                         </div>
                     </div>
                     <div class="form-group">
-                        <select name="user" id="user" class="form-control form-control-lg">
-                            <option selected disabled>---Choose Position---</option>
+                        <select name="role" id="role" class="form-control form-control-lg">
+                            <option selected disabled>---Role---</option>
                             <option value="admin">Administrator</option>
                             <option value="student">Student</option>
                             <option value="teacher">Teacher</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Email">
+                        <input 
+                            type="email" 
+                            class="form-control form-control-lg" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Email"
+                        >
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" id="password" name="password" placeholder="Password">
+                        <input 
+                            type="password" 
+                            class="form-control form-control-lg" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Password"
+                        >
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" id="retypePassword" name="reypePassword" placeholder="Password">
+                        <input 
+                            type="password" 
+                            class="form-control form-control-lg" 
+                            id="retypePassword" 
+                            name="retypePassword" 
+                            placeholder="Retype Password"
+                        >
                     </div>
                     <div class="mt-3 d-flex align-items-center justify-content-end">
-                        <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">REGISTER</a>
+                        <button 
+                            type="submit" 
+                            class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                            name="register"
+                        >
+                            REGISTER
+                        </button>
                     </div>
                     <div class="text-center mt-4 fw-light">
                         Have an account? <a href="./login.php" class="text-primary">Sign in</a>
