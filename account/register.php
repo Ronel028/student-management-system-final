@@ -35,6 +35,21 @@
                 <div class="brand-logo text-center">
                     <h3>UA University</h3>
                 </div>
+
+                <!-- error message -->
+                <?php if (count($error) > 0) { ?>
+                    <div class="bg-danger text-light py-2 px-1 mb-3">
+                        <ul class="m-0">
+                            <?php foreach($error as $value){ ?>
+                                <li><?php echo $value ?></li> 
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php } else { ?>
+                    <?php echo "" ?>
+                <?php } ?>
+                <!-- error message -->
+
                 <h6 class="fw-light">Register new user.</h6>
                 <form class="pt-3" method="POST">
                     <div class="row">
