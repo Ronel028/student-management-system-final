@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['role'])){
+        header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/account/login.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

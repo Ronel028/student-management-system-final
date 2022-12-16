@@ -6,13 +6,32 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+
+        <?php if (isset($_SESSION['role'])) { ?>
+            <?php if ($_SESSION['role'] === 'admin_admin') { ?>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#toggle-user" aria-expanded="false" aria-controls="ui-basic">
+                        <i class="menu-icon fa-solid mdi mdi-account-multiple"></i>
+                        <span class="menu-title">User</span>
+                        <i class="menu-arrow"></i> 
+                    </a>
+                    <div class="collapse" id="toggle-user">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="../user/user_list.php">Users List</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add User</a></li>
+                        </ul>
+                    </div>
+                </li>
+            <?php } ?>
+        <?php } ?>
+
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-bs-toggle="collapse" href="#toggle-student" aria-expanded="false" aria-controls="ui-basic">
                 <i class="menu-icon fa-solid fa-graduation-cap"></i>
                 <span class="menu-title">Students</span>
                 <i class="menu-arrow"></i> 
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="toggle-student">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="../student/student_list.php">Student List</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Add Student</a></li>

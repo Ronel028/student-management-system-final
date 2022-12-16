@@ -75,15 +75,24 @@
                     <div class="form-group">
                         <select name="role" id="role" class="form-control form-control-lg">
                             <option selected disabled>---Role---</option>
-                            <option value="admin">Administrator</option>
+                            <option value="admin"> Administrator</option>
                             <option value="student">Student</option>
                             <option value="teacher">Teacher</option>
                         </select>
                     </div>
+                    <div class="form-group d-none" id="adminCode">
+                        <input 
+                            type="text" 
+                            class="form-control form-control-lg ps-3" 
+                            id="adminCode" 
+                            name="adminCode" 
+                            placeholder="admin code"
+                        >
+                    </div>
                     <div class="form-group">
                         <input 
                             type="email" 
-                            class="form-control form-control-lg" 
+                            class="form-control form-control-lg ps-3" 
                             id="email" 
                             name="email" 
                             placeholder="Email"
@@ -92,7 +101,7 @@
                     <div class="form-group">
                         <input 
                             type="password" 
-                            class="form-control form-control-lg" 
+                            class="form-control form-control-lg ps-3" 
                             id="password" 
                             name="password" 
                             placeholder="Password"
@@ -101,7 +110,7 @@
                     <div class="form-group">
                         <input 
                             type="password" 
-                            class="form-control form-control-lg" 
+                            class="form-control form-control-lg ps-3" 
                             id="retypePassword" 
                             name="retypePassword" 
                             placeholder="Retype Password"
@@ -142,5 +151,20 @@
     <script src="../js/settings.js"></script>
     <script src="../js/todolist.js"></script>
     <!-- endinject -->
+
+    <script>
+        const role = document.getElementById('role');
+        const adminCode = document.getElementById('adminCode');
+
+        role.addEventListener('change', (e) =>{
+            if(e.target.value === 'admin'){
+                adminCode.classList.remove('d-none')
+            }else{
+                adminCode.classList.add('d-none')
+            }
+        })
+
+    </script>
+
     </body>
 </html>

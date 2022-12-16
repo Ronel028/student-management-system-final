@@ -1,3 +1,12 @@
+<?php include_once('./services/loginUser.php') ?>
+
+<!-- if user is already login he/she cannot back to this page -->
+<?php
+    if(isset($_SESSION['role'])){
+        header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/dashboard/dashboard.php");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,16 +41,57 @@
                 <div class="brand-logo text-center">
                     <h3>UA University</h3>
                 </div>
+                
+
+                <!-- display this after you register -->
+                <?php if (isset($_SESSION['registerUser'])) { ?>
+                    <p class="text-success">
+                        <?php
+                            echo $_SESSION['registerUser'];
+                            unset($_SESSION['registerUser']);
+                        ?>
+                    </p>
+                <?php } ?> 
+
+                <!-- display this login credentials not found -->
+                <?php if (isset($_SESSION['loginError'])) { ?>
+                    <p class="text-danger">
+                        <?php
+                            echo $_SESSION['loginError'];
+                            unset($_SESSION['loginError']);
+                        ?>
+                    </p>
+                <?php } ?> 
+
+
                 <h6 class="fw-light">Sign in to continue.</h6>
-                <form class="pt-3">
+                <form class="pt-3" method="POST">
                     <div class="form-group">
-                        <input type="email" class="form-control form-control-lg ps-3" id="exampleInputEmail1" placeholder="Username">
+                        <input 
+                            type="email" 
+                            class="form-control form-control-lg ps-3" 
+                            id="exampleInputEmail1" 
+                            placeholder="Username"
+                            name="email"
+                        >
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-lg ps-3" id="exampleInputPassword1" placeholder="Password">
+                        <input 
+                            type="password" 
+                            class="form-control form-control-lg ps-3" 
+                            id="exampleInputPassword1" 
+                            placeholder="Password"
+                            name="password"
+                        >
                     </div>
                     <div class="mt-3 d-flex align-items-center justify-content-end">
-                        <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN IN</a>
+                        <button 
+                            type="submit" 
+                            class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                            name="login"
+                        >
+                            SIGN IN
+                    </button>
                     </div>
                     <div class="text-center mt-4 fw-light">
                         Don't have an account? <a href="./register.php" class="text-primary">Create</a>

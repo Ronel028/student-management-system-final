@@ -1,3 +1,26 @@
+<!-- start the session in order to use declared session -->
+<?php
+    $user_name = "";
+    $user_email = "";
+    $role = "";
+
+    if(isset($_SESSION['user_name'])){
+        $user_name = $_SESSION['user_name'];
+    }
+    if(isset($_SESSION['user_email'])){
+        $user_email = $_SESSION['user_email'];
+    }
+
+    if(isset($_SESSION['role'])){
+        if($_SESSION['role'] === "admin_admin"){
+            $role = 'admin';
+        }else{
+            $role = $_SESSION['role'];
+        }
+    }
+
+?> 
+
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <div class="me-3">
@@ -16,44 +39,11 @@
     <div class="navbar-menu-wrapper d-flex align-items-top"> 
         <ul class="navbar-nav">
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">John Doe</span></h1>
-                <h3 class="welcome-sub-text">Your performance summary this week </h3>
+                <h1 class="welcome-text mb-0">Good Day, <span class="text-black fw-bold"><?php echo $user_name ?></span></h1>
+                <h3 class="welcome-sub-text">Role: <span class="text-black fw-bold"><?php echo $role ?></span></h3>
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown d-none d-lg-block">
-                <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Select Category </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
-                    <a class="dropdown-item py-3" >
-                        <p class="mb-0 font-weight-medium float-left">Select category</p>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Bootstrap Bundle </p>
-                            <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique dashboards</p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">Angular Bundle</p>
-                            <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular projects</p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">VUE Bundle</p>
-                            <p class="fw-light small-text mb-0">Bundle of 6 Premium Vue Admin Dashboard</p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-item-content flex-grow py-2">
-                            <p class="preview-subject ellipsis font-weight-medium text-dark">React Bundle</p>
-                            <p class="fw-light small-text mb-0">Bundle of 8 Premium React Admin Dashboard</p>
-                        </div>
-                    </a>
-                </div>
-            </li>
             <li class="nav-item d-none d-lg-block">
             <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
                 <span class="input-group-addon input-group-prepend border-right">
@@ -152,14 +142,14 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                     <div class="dropdown-header text-center">
                     <img class="img-md rounded-circle" src="../images/faces/face8.jpg" alt="Profile image">
-                    <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                    <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                    <p class="mb-1 mt-3 font-weight-semibold"><?php echo $user_name ?></p>
+                    <p class="fw-light text-muted mb-0"><?php echo $user_email ?></p>
                     </div>
                     <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
                     <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
                     <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
                     <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-                    <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                    <a class="dropdown-item" href="../account/services/logout.php"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
                 </div>
             </li>
         </ul>
