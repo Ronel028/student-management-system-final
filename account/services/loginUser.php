@@ -27,7 +27,11 @@
             // decalre session variable
             $_SESSION['user_name'] = $user['fname'] . " " . $user['lname'];
             $_SESSION['user_email'] = $user['email'];
-            $_SESSION['role'] = $user['role'];
+            if($user['role'] === "admin_admin"){
+                $_SESSION['role'] = "admin";
+            }else{
+                $_SESSION['role'] = $user['role'];
+            }
 
             // if log in success user can route from this url.
             header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/dashboard/dashboard.php");

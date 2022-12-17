@@ -17,6 +17,12 @@
         $password = $_POST['password'];
         $retypePassword = $_POST['retypePassword'];
 
+        
+        // return none if input field sumbitted empty.
+        if(!$fname || !$lname || !$role || !$email || !$role || !$password){
+            return;
+        }
+
         // add condition if role is define and check if the user are register as admin.
         //if the user register as admin he/she need a admin code provided by school
         if(isset($_POST['role'])){
@@ -32,12 +38,6 @@
             }
         }
 
-        
-
-        // return none if input field sumbitted empty.
-        if(!$fname || !$lname || !$role || !$email || !$role || !$password){
-            return;
-        }
 
         // fetch user data from database and compare the email inside the database and email currently input
         // by user if same or not. If email are the same it add the error from the error array.

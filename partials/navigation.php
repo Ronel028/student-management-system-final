@@ -2,21 +2,14 @@
 <?php
     $user_name = "";
     $user_email = "";
-    $role = "";
 
+    // check if the user_name from the session is set and assign it to user_name variable..
     if(isset($_SESSION['user_name'])){
         $user_name = $_SESSION['user_name'];
     }
+    // check if the user_email from the session is set and assign it to user_email variable.
     if(isset($_SESSION['user_email'])){
         $user_email = $_SESSION['user_email'];
-    }
-
-    if(isset($_SESSION['role'])){
-        if($_SESSION['role'] === "admin_admin"){
-            $role = 'admin';
-        }else{
-            $role = $_SESSION['role'];
-        }
     }
 
 ?> 
@@ -40,7 +33,7 @@
         <ul class="navbar-nav">
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                 <h1 class="welcome-text mb-0">Good Day, <span class="text-black fw-bold"><?php echo $user_name ?></span></h1>
-                <h3 class="welcome-sub-text">Role: <span class="text-black fw-bold"><?php echo $role ?></span></h3>
+                <h3 class="welcome-sub-text">Role: <span class="text-black fw-bold"><?php echo $_SESSION['role'] ?></span></h3>
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">

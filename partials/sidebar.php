@@ -7,8 +7,9 @@
             </a>
         </li>
 
+        <!-- only the admin role can see this code -->
         <?php if (isset($_SESSION['role'])) { ?>
-            <?php if ($_SESSION['role'] === 'admin_admin') { ?>
+            <?php if ($_SESSION['role'] === 'admin') { ?>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#toggle-user" aria-expanded="false" aria-controls="ui-basic">
                         <i class="menu-icon fa-solid mdi mdi-account-multiple"></i>
@@ -18,12 +19,13 @@
                     <div class="collapse" id="toggle-user">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> <a class="nav-link" href="../user/user_list.php">Users List</a></li>
-                            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add User</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="../user/add_user.php">Add User</a></li>
                         </ul>
                     </div>
                 </li>
             <?php } ?>
         <?php } ?>
+        
 
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#toggle-student" aria-expanded="false" aria-controls="ui-basic">
