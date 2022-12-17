@@ -41,29 +41,41 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="role">Role</label>
+                                                        <select class="form-control" id="role" name="role">
+                                                            <option selected disabled>--Select Role--</option>
+                                                            <option value="Admin">Administrator</option>
+                                                            <option value="Teacher">Teacher</option>
+                                                            <option value="Student">Student</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="email">Email address</label>
                                                         <input type="email" class="form-control px-2" id="email" name="email" placeholder="Email">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="password">Password</label>
-                                                        <input type="password" class="form-control px-2" id="password" placeholder="Password">
+                                                        <input type="password" class="form-control px-2" id="password" name="password" placeholder="Password">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="retypePassword">Retype Password</label>
-                                                        <input type="password" class="form-control px-2" id="retypePassword" placeholder="Retype Password">
+                                                        <input type="password" class="form-control px-2" id="retypePassword" name="retypePassword" placeholder="Retype Password">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="gender">Gender</label>
                                                         <select class="form-control" id="gender" name="gender">
                                                             <option selected disabled>--Select Gender--</option>
-                                                            <option>Male</option>
-                                                            <option>Female</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="user_photo">File upload</label>
                                                         <input type="file" class="form-control h-auto px-2" id="user_photo" name="user_photo">
                                                     </div>
+
+                                                    <?php include_once('./services/addUser.php') ?>
+
                                                     <button type="submit" class="btn btn-primary me-2 text-light" name="add_user">Add New User</button>
                                                 </form>
                                             </div>
