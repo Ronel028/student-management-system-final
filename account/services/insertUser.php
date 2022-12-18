@@ -17,12 +17,6 @@
         $password = $_POST['password'];
         $retypePassword = $_POST['retypePassword'];
 
-        
-        // return none if input field sumbitted empty.
-        if(!$fname || !$lname || !$role || !$email || !$role || !$password){
-            return;
-        }
-
         // add condition if role is define and check if the user are register as admin.
         //if the user register as admin he/she need a admin code provided by school
         if(isset($_POST['role'])){
@@ -31,11 +25,16 @@
                 if($adminCode !== $code){
                     $errorList[] = "Admin code invalid!";
                 }else{
-                    $role = $code . $_POST['role'];
+                    $role = $_POST['role'];
                 }
             }else{
                 $role = $_POST['role'];
             }
+        }
+
+        // return none if input field sumbitted empty.
+        if(empty($fname) || empty($lname) || empty($role) || empty($email) || empty($role) || empty($password)){
+            return;
         }
 
 
@@ -81,6 +80,7 @@
                 header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/account/login.php");
                 $_SESSION['registerUser'] = "Registered Successfully.";
             }else{
+                echo $connection->error();
                 header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/account/register.php");
             }
         }

@@ -17,7 +17,7 @@
                             <div class="home-tab">
 
                                 <?php if (isset($_SESSION['role'])) { ?>
-                                    <?php if ($_SESSION['role'] === 'teacher') { ?>
+                                    <?php if ($_SESSION['role'] === 'Teacher') { ?>
                                         <p class="text-danger">This page is for admin role only.</p>
                                     <?php } else { ?>
                                         <!-- title -->
@@ -27,6 +27,16 @@
                                                 <i class="icon-search"></i>
                                                 <input type="search" class="form-control" placeholder="Search Here" title="Search here">
                                             </form>
+                                        </div>
+
+                                        <div>
+                                            <?php if(isset($_SESSION['registerUser'])) { ?>
+                                                <?php
+                                                    echo $_SESSION['registerUser'];
+                                                    unset($_SESSION['registerUser'])
+                                                ?>
+                                            <?php } ?>
+                                            
                                         </div>
         
                                         <?php include_once('./services/getUser.php') ?>

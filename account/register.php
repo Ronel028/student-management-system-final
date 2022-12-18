@@ -75,9 +75,9 @@
                     <div class="form-group">
                         <select name="role" id="role" class="form-control form-control-lg">
                             <option selected disabled>---Role---</option>
-                            <option value="admin"> Administrator</option>
-                            <option value="student">Student</option>
-                            <option value="teacher">Teacher</option>
+                            <option value="Admin"> Administrator</option>
+                            <option value="Student">Student</option>
+                            <option value="Teacher">Teacher</option>
                         </select>
                     </div>
                     <div class="form-group d-none" id="adminCode">
@@ -157,7 +157,7 @@
         const adminCode = document.getElementById('adminCode');
 
         role.addEventListener('change', (e) =>{
-            if(e.target.value === 'admin'){
+            if(e.target.value === 'Admin'){
                 adminCode.classList.remove('d-none')
             }else{
                 adminCode.classList.add('d-none')

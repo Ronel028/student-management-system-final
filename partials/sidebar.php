@@ -9,7 +9,7 @@
 
         <!-- only the admin role can see this code -->
         <?php if (isset($_SESSION['role'])) { ?>
-            <?php if ($_SESSION['role'] === 'admin') { ?>
+            <?php if ($_SESSION['role'] === 'Admin') { ?>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#toggle-user" aria-expanded="false" aria-controls="ui-basic">
                         <i class="menu-icon fa-solid mdi mdi-account-multiple"></i>

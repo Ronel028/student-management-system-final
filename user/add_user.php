@@ -1,6 +1,6 @@
 
 <?php include_once('../partials/head.php') ?>
-    
+    <?php ob_start(); ?>
     <div class="container-scroller">
 
         <!-- navigation -->
@@ -17,7 +17,7 @@
                             <div class="home-tab">
 
                                 <?php if (isset($_SESSION['role'])) { ?>
-                                    <?php if ($_SESSION['role'] === 'teacher') { ?>
+                                    <?php if ($_SESSION['role'] === 'Teacher') { ?>
                                         <p class="text-danger">This page is for admin role only.</p>
                                     <?php } else { ?>
                                         <!-- title -->
