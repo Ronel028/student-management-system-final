@@ -83,7 +83,7 @@
                                                                         </td>
                                                                         <td>
                                                                             <button type="button" class="btn btn-warning btn-md m-0">Edit</button>
-                                                                            <button type="button" class="btn btn-danger btn-md m-0">Delete</button>
+                                                                            <button type="button" onclick="deleteUser(<?php echo $user['id'] ?>)" class="btn btn-danger btn-md m-0" id="delete_user">Delete</button>
                                                                         </td>
                                                                     </tr>
                                                                 <?php } ?>
@@ -115,5 +115,26 @@
         </div>
         
     </div>
+
+    <script>
+        // const deleteUser = document.querySelector('#delete_user')
+        // console.log(deleteUser)
+
+        const deleteUser = async(id) =>{
+            if(id){
+                if(window.confirm("Do you want to delete this user?")){
+                    console.log("User ID: " + id)
+                    const getUserID = await fetch(`./services/deleteUser.php?userID=${id}`, {
+                        method: 'delete'
+                    })
+                    const response = await getUserID.json();
+                    console.log(response)
+                    if(response === "success"){
+                        window.location.reload()
+                    }
+                }
+            }
+        }
+    </script>
 
 <?php include_once('../partials/footer.php') ?>

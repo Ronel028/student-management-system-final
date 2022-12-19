@@ -3,7 +3,7 @@
 
     $userData = array();
 
-    $sql = "SELECT fname, lname, role, email, photo FROM account";
+    $sql = "SELECT id, fname, lname, role, email, photo FROM account";
 
     $getUser = $connection->query($sql);
 
