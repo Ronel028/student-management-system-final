@@ -11,7 +11,7 @@
 
         // create sql for fetching data for database that match in email and password
         //input by user.
-        $sql = "SELECT id, fname, lname, role, email FROM account WHERE email='$email' AND password='$decryptedPassword' LIMIT 1";
+        $sql = "SELECT * FROM account WHERE email='$email' AND password='$decryptedPassword' LIMIT 1";
 
         //execute the query.
         $userData = $connection->query($sql);
@@ -27,6 +27,7 @@
             // decalre session variable
             $_SESSION['user_name'] = $user['fname'] . " " . $user['lname'];
             $_SESSION['user_email'] = $user['email'];
+            $_SESSION['user_photo'] = $user['photo'];
             $_SESSION['role'] = $user['role'];
 
             // if log in success user can route from this url.

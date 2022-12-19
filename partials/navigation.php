@@ -2,6 +2,7 @@
 <?php
     $user_name = "";
     $user_email = "";
+    $user_photo = "";
 
     // check if the user_name from the session is set and assign it to user_name variable..
     if(isset($_SESSION['user_name'])){
@@ -10,6 +11,11 @@
     // check if the user_email from the session is set and assign it to user_email variable.
     if(isset($_SESSION['user_email'])){
         $user_email = $_SESSION['user_email'];
+    }
+
+   // check if the user_photo from the session is set and assign it to user_email variable.
+    if(isset($_SESSION['user_photo'])){
+        $user_photo = $_SESSION['user_photo'];
     }
 
 ?> 
@@ -131,12 +137,33 @@
             </li>
             <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                 <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="img-xs rounded-circle" src="../images/faces/face8.jpg" alt="Profile image"> </a>
+                    <img 
+                        class="img-xs rounded-circle"
+                        <?php if ($user_photo !== "") { ?> 
+                            src=<?php echo "../user/img/".$user_photo ?>
+                        <?php } else { ?>
+                            src=<?php echo "../user/img/default/default.png" ?>
+                        <?php } ?>
+                        alt=<?php echo $user_name ?>
+                    > 
+                </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                     <div class="dropdown-header text-center">
-                    <img class="img-md rounded-circle" src="../images/faces/face8.jpg" alt="Profile image">
-                    <p class="mb-1 mt-3 font-weight-semibold"><?php echo $user_name ?></p>
-                    <p class="fw-light text-muted mb-0"><?php echo $user_email ?></p>
+                        <div class="w-100 d-flex justify-content-center">
+                            <div class="w-25 h-25">
+                                <img 
+                                    class="img-md rounded-circle w-100 h-100" 
+                                    <?php if ($user_photo !== "") { ?> 
+                                    src=<?php echo "../user/img/".$user_photo ?>
+                                    <?php } else { ?>
+                                        src=<?php echo "../user/img/default/default.png" ?>
+                                    <?php } ?>
+                                    alt=<?php echo $user_name ?>
+                                >
+                            </div>
+                        </div>
+                        <p class="mb-1 mt-3 font-weight-semibold"><?php echo $user_name ?></p>
+                        <p class="fw-light text-muted mb-0"><?php echo $user_email ?></p>
                     </div>
                     <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
                     <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>

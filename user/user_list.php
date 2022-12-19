@@ -17,7 +17,7 @@
                             <div class="home-tab">
 
                                 <?php if (isset($_SESSION['role'])) { ?>
-                                    <?php if ($_SESSION['role'] === 'Teacher') { ?>
+                                    <?php if ($_SESSION['role'] !== 'Admin') { ?>
                                         <p class="text-danger">This page is for admin role only.</p>
                                     <?php } else { ?>
                                         <!-- title -->
@@ -61,7 +61,14 @@
                                                                 <?php foreach($userData as $user) { ?>
                                                                     <tr>
                                                                         <td class="py-1">
-                                                                            <img src="./img/default/default_profile.png" alt="user image">
+                                                                            <img 
+                                                                                <?php if($user['photo'] !== "") {?>
+                                                                                    src=<?php echo "img/".$user['photo'] ?>
+                                                                                <?php } else { ?>
+                                                                                    src=<?php echo "img/default/default.png" ?>
+                                                                                <?php } ?>
+                                                                                alt=<?php echo $user['fname']." ".$user['lname'] ?>
+                                                                            >
                                                                         </td>
                                                                         <td><?php echo $user['fname']." ".$user['lname'] ?></td>
                                                                         <td><?php echo $user['email'] ?></td>
