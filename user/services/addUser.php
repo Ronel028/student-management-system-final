@@ -58,7 +58,7 @@
         //image part
         $target_file = $userPhotoDir . basename($_FILES["user_photo"]["name"]); 
         if($userPhoto === ""){
-            $userPhoto = "default_profile.png";
+            $userPhoto = "default.png";
         }
 
 
@@ -89,8 +89,6 @@
             }
 
         }
-
-        print_r($errorList);
 
     }
 

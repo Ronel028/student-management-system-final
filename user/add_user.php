@@ -1,5 +1,6 @@
 
 <?php include_once('../partials/head.php') ?>
+<?php include_once('./services/addUser.php') ?>
     <?php ob_start(); ?>
     <div class="container-scroller">
 
@@ -28,7 +29,21 @@
                                         <!-- add user form -->
                                         <div class="card">
                                             <div class="card-body">
+
                                                 <h4 class="card-title">New User</h4>
+
+                                                <!-- add user error display -->
+                                                <?php if (count($errorList) > 0) { ?>
+                                                    <div class="card-title bg-danger py-2 px-1 rounded">
+                                                        <ul class="m-0 text-light">
+                                                            <?php foreach ($errorList as $error) { ?>
+                                                                <li><?php echo $error ?></li>
+                                                            <?php } ?>
+                                                        </ul>
+                                                    </div>
+                                                <?php } ?>
+
+                                                <!-- form for add new user -->
                                                 <form class="forms-sample" method="POST" enctype="multipart/form-data">
                                                     <div class="row">
                                                         <div class="col-6 form-group">
@@ -74,14 +89,12 @@
                                                         <input type="file" class="form-control h-auto px-2" id="user_photo" name="user_photo">
                                                     </div>
 
-                                                    <?php include_once('./services/addUser.php') ?>
-
                                                     <button type="submit" class="btn btn-primary me-2 text-light" name="add_user">Add New User</button>
                                                 </form>
+                                                <!-- form for add new user -->
+
                                             </div>
                                         </div>
-
-                                        <!-- add user form -->
 
                                     <?php } ?>
                                 <?php } ?>

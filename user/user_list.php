@@ -29,14 +29,22 @@
                                             </form>
                                         </div>
 
-                                        <div>
+                                        <div class="card-title">
+
                                             <?php if(isset($_SESSION['registerUser'])) { ?>
                                                 <?php
                                                     echo $_SESSION['registerUser'];
                                                     unset($_SESSION['registerUser'])
                                                 ?>
                                             <?php } ?>
-                                            
+
+                                            <?php if(isset($_SESSION['updateUser'])) { ?>
+                                                <?php
+                                                    echo $_SESSION['updateUser'];
+                                                    unset($_SESSION['updateUser'])
+                                                ?>
+                                            <?php } ?>
+
                                         </div>
         
                                         <?php include_once('./services/getUser.php') ?>
@@ -82,7 +90,7 @@
                                                                             ?>
                                                                         </td>
                                                                         <td>
-                                                                            <button type="button" class="btn btn-warning btn-md m-0">Edit</button>
+                                                                            <a href="./update_user.php?userID=<?php echo $user['id'] ?>" class="btn btn-warning btn-md m-0">Edit</a>
                                                                             <button type="button" onclick="deleteUser(<?php echo $user['id'] ?>)" class="btn btn-danger btn-md m-0" id="delete_user">Delete</button>
                                                                         </td>
                                                                     </tr>
@@ -117,9 +125,6 @@
     </div>
 
     <script>
-        // const deleteUser = document.querySelector('#delete_user')
-        // console.log(deleteUser)
-
         const deleteUser = async(id) =>{
             if(id){
                 if(window.confirm("Do you want to delete this user?")){
@@ -128,7 +133,6 @@
                         method: 'delete'
                     })
                     const response = await getUserID.json();
-                    console.log(response)
                     if(response === "success"){
                         window.location.reload()
                     }
