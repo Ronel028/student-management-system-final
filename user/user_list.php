@@ -30,7 +30,7 @@
                                         </div>
 
                                         <div class="card-title">
-
+                                            <!-- session display if the user reg. successfull -->
                                             <?php if(isset($_SESSION['registerUser'])) { ?>
                                                 <?php
                                                     echo $_SESSION['registerUser'];
@@ -38,10 +38,19 @@
                                                 ?>
                                             <?php } ?>
 
+                                            <!-- session display if the user update. successfull -->
                                             <?php if(isset($_SESSION['updateUser'])) { ?>
                                                 <?php
                                                     echo $_SESSION['updateUser'];
                                                     unset($_SESSION['updateUser'])
+                                                ?>
+                                            <?php } ?>
+
+                                            <!-- session display if the user update password successfull -->
+                                            <?php if(isset($_SESSION['updatePassword'])) { ?>
+                                                <?php
+                                                    echo $_SESSION['updatePassword'];
+                                                    unset($_SESSION['updatePassword'])
                                                 ?>
                                             <?php } ?>
 
@@ -70,10 +79,10 @@
                                                                     <tr>
                                                                         <td class="py-1">
                                                                             <img 
-                                                                                <?php if($user['photo'] !== "") {?>
+                                                                                <?php if($user['photo'] !== "default.png") {?>
                                                                                     src=<?php echo "img/".$user['photo'] ?>
                                                                                 <?php } else { ?>
-                                                                                    src=<?php echo "img/default/default.png" ?>
+                                                                                    src=<?php echo "img/default/".$user['photo'] ?>
                                                                                 <?php } ?>
                                                                                 alt=<?php echo $user['fname']." ".$user['lname'] ?>
                                                                             >
@@ -90,6 +99,7 @@
                                                                             ?>
                                                                         </td>
                                                                         <td>
+                                                                            <a href="./update_user_password.php?userID=<?php echo $user['id'] ?>" class="btn btn-primary text-light btn-md m-0">Change Password</a>
                                                                             <a href="./update_user.php?userID=<?php echo $user['id'] ?>" class="btn btn-warning btn-md m-0">Edit</a>
                                                                             <button type="button" onclick="deleteUser(<?php echo $user['id'] ?>)" class="btn btn-danger btn-md m-0" id="delete_user">Delete</button>
                                                                         </td>
@@ -128,11 +138,11 @@
         const deleteUser = async(id) =>{
             if(id){
                 if(window.confirm("Do you want to delete this user?")){
-                    console.log("User ID: " + id)
                     const getUserID = await fetch(`./services/deleteUser.php?userID=${id}`, {
                         method: 'delete'
                     })
                     const response = await getUserID.json();
+                    console.log(response)
                     if(response === "success"){
                         window.location.reload()
                     }

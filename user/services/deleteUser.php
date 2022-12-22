@@ -17,8 +17,8 @@
     // sql to delete a record
     $sql = "DELETE FROM account WHERE id=$userID";
 
+    unlink('../img/' . $userPhoto);
     if($connection->query($sql)){
-        unlink('../img/' . $userPhoto);
         echo json_encode("success");
     }else{
         echo json_encode("failed");

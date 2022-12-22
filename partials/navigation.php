@@ -139,10 +139,10 @@
                 <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                     <img 
                         class="img-xs rounded-circle"
-                        <?php if ($user_photo !== "") { ?> 
+                        <?php if ($user_photo !== "default.png") { ?> 
                             src=<?php echo "../user/img/".$user_photo ?>
                         <?php } else { ?>
-                            src=<?php echo "../user/img/default/default.png" ?>
+                            src=<?php echo "../user/img/default/".$user_photo ?>
                         <?php } ?>
                         alt=<?php echo $user_name ?>
                     > 
@@ -153,10 +153,10 @@
                             <div class="w-25 h-25">
                                 <img 
                                     class="img-md rounded-circle w-100 h-100" 
-                                    <?php if ($user_photo !== "") { ?> 
+                                    <?php if ($user_photo !== "default.png") { ?> 
                                     src=<?php echo "../user/img/".$user_photo ?>
                                     <?php } else { ?>
-                                        src=<?php echo "../user/img/default/default.png" ?>
+                                        src=<?php echo "../user/img/default/".$user_photo ?>
                                     <?php } ?>
                                     alt=<?php echo $user_name ?>
                                 >

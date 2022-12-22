@@ -22,6 +22,8 @@
 
         if($u_userPhoto === ""){
             $u_userPhoto = $userData['photo'];
+        }else{
+            unlink('img/' . $userData['photo']);
         }
 
         // move the image from the img/ directory that i created if no error
