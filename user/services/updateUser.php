@@ -13,8 +13,8 @@
     // update data
     if(isset($_POST['update_user'])){
 
-        $u_fname = $_POST['u_fname'];
-        $u_lname = $_POST['u_lname'];
+        $u_fname = ucfirst($_POST['u_fname']);
+        $u_lname = ucfirst($_POST['u_lname']);
         $u_role = $_POST['u_role'];
         $u_email = $_POST['u_email'];
         $u_gender = $_POST['u_gender'];

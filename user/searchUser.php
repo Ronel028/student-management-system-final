@@ -23,10 +23,13 @@
                                         <!-- title -->
                                         <div class="statistics-details d-flex align-items-center justify-content-between">
                                             <h2>User List</h2>
-                                            <form class="search-form d-flex align-items-center gap-3" action="./searchUser.php" method="GET">
-                                                <i class="icon-search"></i>
-                                                <input type="search" class="form-control px-2" placeholder="Search Here" name="search_user" title="Search here">
-                                            </form>
+                                            <div class="d-flex align-items-center gap-4">
+                                                <a class="fs-6 fw-light text-dark" href="./user_list.php">Show all user</a>
+                                                <form class="search-form d-flex align-items-center gap-3" action="./searchUser.php" method="GET">
+                                                    <i class="icon-search"></i>
+                                                    <input type="search" class="form-control px-2" name="search_user" placeholder="Search Here" title="Search here">
+                                                </form>
+                                            </div>
                                         </div>
 
                                         <div class="card-title">
@@ -56,8 +59,26 @@
 
                                         </div>
         
-                                        <!-- getting user -->
-                                        <?php include_once('./services/getUser.php') ?>
+                                        <!-- search user -->
+                                        <?php
+
+                                            include_once('../database/config.php');
+
+                                            $searchUser = $_GET['search_user'];
+
+                                            $userData = array();
+
+                                            $sql = "SELECT id, fname, lname, role, email, photo FROM account WHERE fname LIKE '%$searchUser%' OR lname LIKE '%$searchUser%'";
+
+                                            $getUser = $connection->query($sql);
+
+                                            if($getUser->num_rows > 0){
+                                                for($i = 0; $i < $getUser->num_rows; $i++){
+                                                    $users = $getUser->fetch_assoc();
+                                                    $userData[] = $users;
+                                                }
+                                            }
+                                        ?>
         
                                         <!-- content -->
                                         <!-- student list -->

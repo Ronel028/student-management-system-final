@@ -8,8 +8,8 @@
 
         $error = array(); // storage of error
 
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
+        $fname = ucfirst($_POST['fname']);
+        $lname = ucfirst($_POST['lname']);
         $role = null;
         $email = $_POST['email'];
         $password = $_POST['password'];
