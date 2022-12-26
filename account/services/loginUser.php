@@ -29,6 +29,7 @@
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['user_photo'] = $user['photo'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['id'] = $user['id'];
 
             // if log in success user can route from this url.
             header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/dashboard/dashboard.php");
