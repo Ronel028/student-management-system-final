@@ -18,7 +18,7 @@
         $u_role = $_POST['u_role'];
         $u_email = $_POST['u_email'];
         $u_gender = $_POST['u_gender'];
-        $u_userPhoto = $u_userPhoto = $_FILES['u_user_photo']['name'];
+        $u_userPhoto = $_FILES['u_user_photo']['name'];
 
         if($u_userPhoto === ""){
             $u_userPhoto = $userData['photo'];

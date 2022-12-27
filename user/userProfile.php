@@ -1,4 +1,6 @@
+<?php ob_start() ?>
 <?php include_once('../partials/head.php') ?>
+<?php include_once('./userProfile/userProfile.php') ?>
 
     <div class="container-scroller">
         <!-- navigation -->
@@ -12,11 +14,68 @@
                 <div class="content-wrapper">
                     <div class="row">
 
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <form class="modal-content" method="POST">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Change Password</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <?php include_once('./userProfile/userPassword.php') ?>
+                                        <div class="col form-group">
+                                            <label for="fname">New password</label>
+                                            <input 
+                                                type="password" 
+                                                class="px-2 form-control" 
+                                                id="newPassword" 
+                                                placeholder="New password"
+                                                name="newPassword"
+                                            >
+                                        </div>
+                                        <div class="col form-group">
+                                            <label for="fname">Retype new password</label>
+                                            <input 
+                                                type="password" 
+                                                class="px-2 form-control" 
+                                                id="retypeNewPassword" 
+                                                placeholder="Retype new password"
+                                                name="retypeNewPassword"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" name="updateUserPassword">Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- display the error if have -->
+                        <?php if (count($error) > 0) { ?>
+                            <ul>
+                                <?php foreach ($error as $err) { ?>
+                                    <li class="text-danger"><?php echo $err ?></li>
+                                <?php } ?>
+                            </ul>
+                        <?php } ?>
+
+                        <!-- display this if user update password successfull -->
+                        <?php if (isset($_SESSION['updateUserPassword'])) { ?>
+                            <div>
+                                <?php
+                                    echo $_SESSION['updateUserPassword'];
+                                    unset($_SESSION['updateUserPassword']);
+                                ?>
+                            </div>
+                        <?php } ?>
+
                         <div class="col-md-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Information</h4>
-                                    <?php include_once('./userProfile/userProfile.php') ?>
                                     <p class="card-description mb-4">
                                         Profile Information
                                     </p>
@@ -45,7 +104,14 @@
                                             <p><?php echo $user['gender'] ?></p>
                                         </div>
                                         <div class="w-100">
-                                            <button type="button" class="btn btn-primary w-100">Update Password</button>
+                                            <button 
+                                                type="button" 
+                                                class="btn btn-primary w-100"
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#exampleModal"
+                                            >
+                                                Update Password
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +124,7 @@
                                     <p class="card-description">
                                         Profile Information
                                     </p>
-                                    <form class="forms-sample">
+                                    <form class="forms-sample" method="POST" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col form-group">
                                                 <label for="fname">First Name</label>
@@ -117,10 +183,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="user_image">Photo</label>
-                                            <input type="file" class="px-2 h-auto form-control" id="user_image">
+                                            <input type="file" class="px-2 h-auto form-control" id="user_image" name="user_image">
                                         </div>
                                         <div class="w-100 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                            <button type="submit" class="btn btn-primary me-2" name="update">Update</button>
                                         </div>
                                     </form>
                                 </div>
@@ -141,5 +207,11 @@
 
         </div>
     </div>
+
+    <script>
+        function updateUserPassword(id){
+            console.log(id)
+        }  
+    </script>
 
 <?php include_once('../partials/footer.php') ?>
