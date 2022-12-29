@@ -35,9 +35,18 @@
             </a>
             <div class="collapse" id="toggle-student">
                 <ul class="nav flex-column sub-menu">
+
                     <li class="nav-item"> <a class="nav-link" href="../student/student_list.php">Student List</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Add Student</a></li>
+
+                    <!-- this is visible for admin user only -->
+                    <?php if (isset($_SESSION['role'])) { ?>
+                        <?php if ($_SESSION['role'] === "Admin") { ?>
+                            <li class="nav-item"> <a class="nav-link" href="../student/add_student.php">Add Student</a></li>
+                        <?php } ?>
+                    <?php } ?>
+
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Manage Student</a></li>
+                    
                 </ul>
             </div>
         </li>
