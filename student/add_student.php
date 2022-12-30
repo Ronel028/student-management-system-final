@@ -30,6 +30,10 @@
                                     <h2>Add Student</h2>
                                 </div>
 
+                                <div>
+                                    <?php include_once('./services/insertStudent.php') ?>
+                                </div>
+
                                 <!-- content -->
                                 <!-- student list -->
                                 <div class="col-12 grid-margin">
@@ -39,7 +43,7 @@
                                             <p class="card-description">Personal information</p>
 
                                             <!-- add student form -->
-                                            <form class="form-sample">
+                                            <form class="form-sample" method="POST" enctype="multipart/form-data">
                                                 <div>
                                                     <div>
                                                         <div class="form-group">
@@ -137,15 +141,24 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div>
-                                                        <div class="form-group">
-                                                            <label for="course">Course</label>
-                                                            <select id="course" class="form-control px-2" name="course">
-                                                                <option selected disabled>---SELECT COURSE---</option>
-                                                                <option value="BSIT">BSIT(Bachelor of Science in Information Technology)</option>
-                                                                <option value="BSBA">BSBA(Bachelor of Science in Business Administration)</option>
-                                                            </select>
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <label for="student_photo">Photo</label>
+                                                        <input 
+                                                            type="file" 
+                                                            class="form-control h-auto px-2" 
+                                                            id="student_photo" 
+                                                            name="student_photo"
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label for="course">Course</label>
+                                                        <select id="course" class="form-control px-2" name="course">
+                                                            <option selected disabled>---SELECT COURSE---</option>
+                                                            <option value="BSIT">BSIT(Bachelor of Science in Information Technology)</option>
+                                                            <option value="BSBA">BSBA(Bachelor of Science in Business Administration)</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div>
@@ -233,23 +246,23 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="p_name">Name</label>
+                                                            <label for="g_name">Name</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="p_name"
-                                                                name="p_name"
+                                                                id="g_name"
+                                                                name="g_name"
                                                             >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="p_address">Address</label>
+                                                            <label for="g_address">Address</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="p_address"
-                                                                name="p_address"
+                                                                id="g_address"
+                                                                name="g_address"
                                                             >
                                                         </div>
                                                     </div>
@@ -257,23 +270,23 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="p_number">Phone Number</label>
+                                                            <label for="g_number">Phone Number</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="p_number"
-                                                                name="p_number"
+                                                                id="g_number"
+                                                                name="g_number"
                                                             >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="p_email">Email</label>
+                                                            <label for="g_email">Email</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="p_email"
-                                                                name="p_email"
+                                                                id="g_email"
+                                                                name="g_email"
                                                             >
                                                         </div>
                                                     </div>
@@ -282,6 +295,7 @@
                                                     <button 
                                                         type="submit" 
                                                         class="text-light btn-primary border-0 py-2 px-3"
+                                                        name="add_student"
                                                     >
                                                         ADD STUDENT
                                                     </button>
