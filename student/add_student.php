@@ -31,7 +31,7 @@
                                 </div>
 
                                 <div>
-                                    <?php include_once('./services/insertStudent.php') ?>
+                                    <?php //include_once('./services/insertStudent.php') ?>
                                 </div>
 
                                 <!-- content -->
@@ -42,8 +42,19 @@
                                             <h4 class="card-title">Add new student</h4>
                                             <p class="card-description">Personal information</p>
 
+                                            <!-- add user error display -->
+                                            <?php //if (count($errorList) > 0) { ?>
+                                                <div class="card-title bg-danger py-2 px-1 rounded">
+                                                    <ul class="m-0 text-light">
+                                                        <?php //foreach ($errorList as $error) { ?>
+                                                            <li><?php //echo $error ?></li>
+                                                        <?php //} ?>
+                                                    </ul>
+                                                </div>
+                                            <?php //} ?>
+
                                             <!-- add student form -->
-                                            <form class="form-sample" method="POST" enctype="multipart/form-data">
+                                            <form class="form-sample" id="student_form" name="student_form" method="POST" enctype="multipart/form-data">
                                                 <div>
                                                     <div>
                                                         <div class="form-group">
@@ -325,5 +336,8 @@
         </div>
         
     </div>
+
+    <!-- code for submit form data and avoid reload page -->
+    <script src="./js/insertStudent.js"></script>
 
 <?php include_once('../partials/footer.php') ?>
