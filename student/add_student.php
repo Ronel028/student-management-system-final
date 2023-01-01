@@ -30,10 +30,6 @@
                                     <h2>Add Student</h2>
                                 </div>
 
-                                <div>
-                                    <?php //include_once('./services/insertStudent.php') ?>
-                                </div>
-
                                 <!-- content -->
                                 <!-- student list -->
                                 <div class="col-12 grid-margin">
@@ -42,19 +38,8 @@
                                             <h4 class="card-title">Add new student</h4>
                                             <p class="card-description">Personal information</p>
 
-                                            <!-- add user error display -->
-                                            <?php //if (count($errorList) > 0) { ?>
-                                                <div class="card-title bg-danger py-2 px-1 rounded">
-                                                    <ul class="m-0 text-light">
-                                                        <?php //foreach ($errorList as $error) { ?>
-                                                            <li><?php //echo $error ?></li>
-                                                        <?php //} ?>
-                                                    </ul>
-                                                </div>
-                                            <?php //} ?>
-
                                             <!-- add student form -->
-                                            <form class="form-sample" id="student_form" name="student_form" method="POST" enctype="multipart/form-data">
+                                            <form class="form-sample" id="student_form" name="student_form" enctype="multipart/form-data">
                                                 <div>
                                                     <div>
                                                         <div class="form-group">
@@ -338,6 +323,20 @@
     </div>
 
     <!-- code for submit form data and avoid reload page -->
-    <script src="./js/insertStudent.js"></script>
+    <script>
+
+        const studentForm = document.querySelector("#student_form")
+
+        studentForm.addEventListener('submit', async(e) =>{
+            e.preventDefault()
+
+            const insertStudent = await fetch('./services/insertStudent.php', {
+                method: 'post',
+                body: new FormData(studentForm)
+            })
+            const response = await insertStudent.json()
+            console.log(response)
+        }); 
+    </script>
 
 <?php include_once('../partials/footer.php') ?>
