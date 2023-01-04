@@ -38,6 +38,11 @@
                                             <h4 class="card-title">Add new student</h4>
                                             <p class="card-description">Personal information</p>
 
+                                            <!-- error message if have -->
+                                            <p id="error">
+                                                <!-- error here -->
+                                            </p>
+
                                             <!-- add student form -->
                                             <form class="form-sample" id="student_form" name="student_form" enctype="multipart/form-data">
                                                 <div>
@@ -93,7 +98,7 @@
                                                         <div class="form-group">
                                                             <label for="gender">Gender</label>
                                                             <select id="gender" class="form-control px-2" name="gender">
-                                                                <option selected disabled>---SELECT GENDER---</option>
+                                                                <option value="">---SELECT GENDER---</option>
                                                                 <option value="Male">Male</option>
                                                                 <option value="Female">Female</option>
                                                             </select>
@@ -116,7 +121,7 @@
                                                         <div class="form-group">
                                                             <label for="cstatus">Civil Status</label>
                                                             <select class="form-control" id="cstatus" name="cstatus">
-                                                                <option selected disabled>---SELECT CIVIL STATUS---</option>
+                                                                <option value="">---SELECT CIVIL STATUS---</option>
                                                                 <option value="Single">Single</option>
                                                                 <option value="Married">Married</option>
                                                                 <option value="Widowed">Widowed</option>
@@ -151,7 +156,7 @@
                                                     <div class="form-group">
                                                         <label for="course">Course</label>
                                                         <select id="course" class="form-control px-2" name="course">
-                                                            <option selected disabled>---SELECT COURSE---</option>
+                                                            <option value="">---SELECT COURSE---</option>
                                                             <option value="BSIT">BSIT(Bachelor of Science in Information Technology)</option>
                                                             <option value="BSBA">BSBA(Bachelor of Science in Business Administration)</option>
                                                         </select>
@@ -326,6 +331,7 @@
     <script>
 
         const studentForm = document.querySelector("#student_form")
+        const error = document.querySelector("#error")
 
         studentForm.addEventListener('submit', async(e) =>{
             e.preventDefault()
@@ -335,8 +341,38 @@
                 body: new FormData(studentForm)
             })
             const response = await insertStudent.json()
-            console.log(response)
-        }); 
+            if(response.error){
+                error.textContent = response.error
+                error.classList.add("text-danger")
+                error.classList.remove("text-success")
+            }else{
+                error.textContent = response.status
+                error.classList.remove("text-danger")
+                error.classList.add("text-success")
+
+                // reset all the input field
+                document.querySelector("#studentNumber").value = ""
+                document.querySelector("#fname").value = ""
+                document.querySelector("#mname").value = ""
+                document.querySelector("#lname").value = ""
+                document.querySelector("#gender").selectedIndex = 0
+                document.querySelector("#dateOfBirth").value = ""
+                document.querySelector("#cstatus").selectedIndex = 0
+                document.querySelector("#nationality").value = ""
+                document.querySelector("#student_photo").value = ""
+                document.querySelector("#course").selectedIndex = 0
+                document.querySelector("#phoneNumber").value = ""
+                document.querySelector("#email").value = ""
+                document.querySelector("#street").value = ""
+                document.querySelector("#city").value = ""
+                document.querySelector("#stateProvince").value = ""
+                document.querySelector("#postalCode").value = ""
+                document.querySelector("#g_name").value = ""
+                document.querySelector("#g_address").value = ""
+                document.querySelector("#g_number").value = ""
+                document.querySelector("#g_email").value = ""
+            }
+        });
     </script>
 
 <?php include_once('../partials/footer.php') ?>
