@@ -25,6 +25,8 @@
                                     </form>
                                 </div>
 
+                                <?php include_once('./services/getStudent.php') ?>
+
                                 <!-- content -->
                                 <!-- student list -->
                                 <div class="card">
@@ -33,69 +35,39 @@
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>User</th>
-                                                        <th>First name</th>
-                                                        <th>Amount</th>
-                                                        <th>Deadline</th>
+                                                        <th>Photo</th>
+                                                        <th>Name</th>
+                                                        <th>Course</th>
+                                                        <th>Gender</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="py-1">
-                                                            <img src="../images/faces/face1.jpg" alt="image">
-                                                        </td>
-                                                        <td>Herman Beck</td>
-                                                        <td>$ 77.99</td>
-                                                        <td>May 15, 2015</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="py-1">
-                                                            <img src="../images/faces/face2.jpg" alt="image">
-                                                        </td>
-                                                        <td>Messsy Adam</td>
-                                                        <td>$245.30</td>
-                                                        <td>July 1, 2015</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="py-1">
-                                                            <img src="../images/faces/face3.jpg" alt="image">
-                                                        </td>
-                                                        <td>John Richards</td>
-                                                        <td>$138.00</td>
-                                                        <td>Apr 12, 2015</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="py-1">
-                                                            <img src="../images/faces/face4.jpg" alt="image">
-                                                        </td>
-                                                        <td>Peter Meggik</td>
-                                                        <td>$ 77.99</td>
-                                                        <td>May 15, 2015</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="py-1">
-                                                            <img src="../images/faces/face5.jpg" alt="image">
-                                                        </td>
-                                                        <td>Edward</td>
-                                                        <td>$ 160.25</td>
-                                                        <td>May 03, 2015</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="py-1">
-                                                            <img src="../images/faces/face6.jpg" alt="image">
-                                                        </td>
-                                                        <td>John Doe</td>
-                                                        <td>$ 123.21</td>
-                                                        <td>April 05, 2015</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="py-1">
-                                                            <img src="../images/faces/face7.jpg" alt="image">
-                                                        </td>
-                                                        <td>Henry Tom</td>
-                                                        <td>$ 150.00</td>
-                                                        <td>June 16, 2015</td>
-                                                    </tr>
+                                                    <?php if ($studentList > 0) { ?>
+                                                        <?php foreach ($studentList as $student) { ?>
+                                                            <tr>
+                                                                <td class="py-1">
+                                                                    <img 
+                                                                        src="<?php if ($student['photo'] !== "default.png") { ?>
+                                                                                ./img/<?php echo $student['photo'] ?>
+                                                                            <?php } else { ?>
+                                                                                ./img/default/<?php echo $student['photo'] ?>
+                                                                            <?php } ?>" 
+                                                                        alt="<?php echo $student['fname']." ".$student['lname'] ?>"
+                                                                    >
+                                                                </td>
+                                                                <td><?php echo $student['fname']." ".$student['lname'] ?></td>
+                                                                <td><?php echo $student['course'] ?></td>
+                                                                <td><?php echo $student['gender'] ?></td>
+                                                                <td>
+                                                                    <button class="btn btn-outline-success btn-fw m-0 d-flex align-items-center">
+                                                                        <i class="mdi mdi-eye m-0 me-1 d-flex align-items-center"></i>
+                                                                        View Student Data
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                    <?php } ?>
                                                 </tbody>
                                             </table>
                                     </div>

@@ -39,7 +39,7 @@
                                             <p class="card-description">Personal information</p>
 
                                             <!-- error message if have -->
-                                            <p id="error">
+                                            <p id="msg">
                                                 <!-- error here -->
                                             </p>
 
@@ -241,56 +241,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p class="card-description mt-3">
-                                                    Parent/Guardian Contact Information
-                                                </p>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="g_name">Name</label>
-                                                            <input 
-                                                                type="text" 
-                                                                class="form-control px-2"
-                                                                id="g_name"
-                                                                name="g_name"
-                                                            >
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="g_address">Address</label>
-                                                            <input 
-                                                                type="text" 
-                                                                class="form-control px-2"
-                                                                id="g_address"
-                                                                name="g_address"
-                                                            >
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="g_number">Phone Number</label>
-                                                            <input 
-                                                                type="text" 
-                                                                class="form-control px-2"
-                                                                id="g_number"
-                                                                name="g_number"
-                                                            >
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="g_email">Email</label>
-                                                            <input 
-                                                                type="text" 
-                                                                class="form-control px-2"
-                                                                id="g_email"
-                                                                name="g_email"
-                                                            >
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="w-100 d-flex align-items-center justify-content-end">
                                                     <button 
@@ -331,7 +281,7 @@
     <script>
 
         const studentForm = document.querySelector("#student_form")
-        const error = document.querySelector("#error")
+        const message = document.querySelector("#msg")
 
         studentForm.addEventListener('submit', async(e) =>{
             e.preventDefault()
@@ -342,13 +292,17 @@
             })
             const response = await insertStudent.json()
             if(response.error){
-                error.textContent = response.error
-                error.classList.add("text-danger")
-                error.classList.remove("text-success")
+                message.textContent = response.error
+                message.classList.add("text-danger")
+                message.classList.remove("text-success")
             }else{
-                error.textContent = response.status
-                error.classList.remove("text-danger")
-                error.classList.add("text-success")
+                message.textContent = response.status
+                message.classList.remove("text-danger")
+                message.classList.add("text-success")
+
+                setTimeout(() =>{
+                    message.textContent = ""
+                }, 4000)
 
                 // reset all the input field
                 document.querySelector("#studentNumber").value = ""
@@ -367,10 +321,6 @@
                 document.querySelector("#city").value = ""
                 document.querySelector("#stateProvince").value = ""
                 document.querySelector("#postalCode").value = ""
-                document.querySelector("#g_name").value = ""
-                document.querySelector("#g_address").value = ""
-                document.querySelector("#g_number").value = ""
-                document.querySelector("#g_email").value = ""
             }
         });
     </script>
