@@ -60,7 +60,13 @@
                                                                 <td><?php echo $student['course'] ?></td>
                                                                 <td><?php echo $student['gender'] ?></td>
                                                                 <td>
-                                                                    <button class="btn btn-outline-success btn-fw m-0 d-flex align-items-center">
+                                                                    <button 
+                                                                        class="btn btn-outline-success btn-fw m-0 d-flex align-items-center"
+                                                                        id="studentData"
+                                                                        data-user-id="<?php echo $student['id'] ?>"
+                                                                        data-bs-toggle="modal" 
+                                                                        data-bs-target="#student"
+                                                                    >
                                                                         <i class="mdi mdi-eye m-0 me-1 d-flex align-items-center"></i>
                                                                         View Student Data
                                                                     </button>
@@ -74,6 +80,45 @@
                                     </div>
                                 </div>
                                 <!-- student list -->
+
+                                <!-- modal -->
+                                    <div class="modal fade" id="student" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="title"></h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="mb-2">
+                                                        <p class="fw-bold m-0">Student ID</p>
+                                                        <p class="fs-6" id="stu_id"></p>
+                                                    </div>
+                                                    <div class="row mb-2">
+                                                        <div class="col-4">
+                                                            <p class="fw-bold m-0">First Name</p>
+                                                            <p class="fs-6" id="stu_fname"></p>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <p class="fw-bold m-0">Middle Name</p>
+                                                            <p class="fs-6" id="stu_mname"></p>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <p class="fw-bold m-0">Last Name</p>
+                                                            <p class="fs-6" id="stu_lname"></p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <!-- modal -->
 
                             </div>
                         <div>
@@ -93,5 +138,24 @@
         </div>
         
     </div>
+
+    <script>
+        const studentData = document.querySelectorAll("#studentData")
+        console.log(studentData)
+        studentData.forEach(viewData =>{
+            viewData.addEventListener('click', async() =>{
+                const userID = viewData.getAttribute('data-user-id')
+                const getStudent = await fetch(`./services/getStudentById.php?userID=${userID}`)
+                const response = await getStudent.json()
+
+                document.querySelector("#title").textContent = "Student -> " + response.Student.fname + " " + response.Student.lname
+                document.querySelector("#stu_id").textContent = response.Student.student_id
+                document.querySelector("#stu_fname").textContent = response.Student.fname
+                document.querySelector("#stu_mname").textContent = response.Student.mname
+                document.querySelector("#stu_lname").textContent = response.Student.lname
+
+            })
+        })
+    </script>
 
 <?php include_once('../partials/footer.php') ?>
