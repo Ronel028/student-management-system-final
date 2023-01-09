@@ -59,9 +59,9 @@
                                                                 <td><?php echo $student['fname']." ".$student['lname'] ?></td>
                                                                 <td><?php echo $student['course'] ?></td>
                                                                 <td><?php echo $student['gender'] ?></td>
-                                                                <td>
+                                                                <td class="d-flex items-center">
                                                                     <button 
-                                                                        class="btn btn-outline-success btn-fw m-0 d-flex align-items-center"
+                                                                        class="btn btn-success btn-fw m-0 d-flex align-items-center"
                                                                         id="studentData"
                                                                         data-user-id="<?php echo $student['id'] ?>"
                                                                         data-bs-toggle="modal" 
@@ -70,6 +70,17 @@
                                                                         <i class="mdi mdi-eye m-0 me-1 d-flex align-items-center"></i>
                                                                         View Student Data
                                                                     </button>
+                                                                    <a 
+                                                                        class="btn btn-warning m-0 d-flex items-center"
+                                                                    >
+                                                                        Edit
+                                                                    </a>
+                                                                    <a 
+                                                                        class="btn btn-danger m-0 d-flex items-center"
+                                                                        href="./services/deleteStudent.php?student=<?php echo $student['id'] ?>"
+                                                                    >
+                                                                        Delete
+                                                                    </a>
                                                                 </td>
                                                             </tr>
                                                         <?php } ?>
@@ -92,8 +103,8 @@
                                                 <div class="modal-body">
                                                     <div class="row mb-4">
                                                         <div class="col-5">
-                                                            <div style="width: 100%; height: 150px;" class="border border-secondary">
-                                                                <img 
+                                                            <div style="width: 100%; height: 150px;" class="border border-2 bg-secondary">
+                                                                <img
                                                                     class="w-100 h-100"
                                                                     id="stu_studentPhoto" 
                                                                     src="" 

@@ -44,8 +44,6 @@
                             <li class="nav-item"> <a class="nav-link" href="../student/add_student.php">Add Student</a></li>
                         <?php } ?>
                     <?php } ?>
-
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Manage Student</a></li>
                     
                 </ul>
             </div>
