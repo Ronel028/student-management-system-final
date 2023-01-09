@@ -90,10 +90,23 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="mb-2">
-                                                        <p class="fw-bold m-0">Student ID</p>
-                                                        <p class="fs-6" id="stu_id"></p>
+                                                    <div class="row mb-4">
+                                                        <div class="col-5">
+                                                            <div style="width: 100%; height: 150px;" class="border border-secondary">
+                                                                <img 
+                                                                    class="w-100 h-100"
+                                                                    id="stu_studentPhoto" 
+                                                                    src="" 
+                                                                    alt=""
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <p class="fw-bold m-0">Student ID</p>
+                                                            <p class="fs-6" id="stu_id"></p>
+                                                        </div>
                                                     </div>
+                                                    <p class="fst-italic m-0 text-dark text-center">---- Student Information ----</p>
                                                     <div class="row mb-2">
                                                         <div class="col-4">
                                                             <p class="fw-bold m-0">First Name</p>
@@ -108,7 +121,62 @@
                                                             <p class="fs-6" id="stu_lname"></p>
                                                         </div>
                                                     </div>
-                                                    
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <p class="fw-bold m-0">Gender</p>
+                                                            <p class="fs-6" id="stu_gender"></p>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <p class="fw-bold m-0">Date Of Birth</p>
+                                                            <p class="fs-6" id="stu_dob"></p>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <p class="fw-bold m-0">Civil Status</p>
+                                                            <p class="fs-6" id="stu_cstatus"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-4">
+                                                        <div class="col-4">
+                                                            <p class="fw-bold m-0">Nationality</p>
+                                                            <p class="fs-6" id="stu_nationality"></p>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <p class="fw-bold m-0">Course</p>
+                                                            <p class="fs-6" id="stu_course"></p>
+                                                        </div>
+                                                    </div>
+                                                    <p class="fst-italic m-0 text-center">---- Contact Information ----</p>
+                                                    <div class="row mb-4">
+                                                        <div class="col-6">
+                                                            <p class="fw-bold m-0">Contact Number</p>
+                                                            <p class="fs-6" id="stu_phoneNumber"></p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="fw-bold m-0">Email</p>
+                                                            <p class="fs-6" id="stu_email"></p>
+                                                        </div>
+                                                    </div>
+                                                    <p class="fst-italic m-0 text-center">---- Address ----</p>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <p class="fw-bold m-0">Street</p>
+                                                            <p class="fs-6" id="stu_street"></p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="fw-bold m-0">City</p>
+                                                            <p class="fs-6" id="stu_city"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <p class="fw-bold m-0">State/Province</p>
+                                                            <p class="fs-6" id="stu_state"></p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="fw-bold m-0">Zip/Postal Code</p>
+                                                            <p class="fs-6" id="stu_zipCode"></p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -148,11 +216,31 @@
                 const getStudent = await fetch(`./services/getStudentById.php?userID=${userID}`)
                 const response = await getStudent.json()
 
+                const dob = new Date(response.Student.dateOfBirth)
+                const option = { year: 'numeric', month: 'short', day: 'numeric' }
+
                 document.querySelector("#title").textContent = "Student -> " + response.Student.fname + " " + response.Student.lname
                 document.querySelector("#stu_id").textContent = response.Student.student_id
                 document.querySelector("#stu_fname").textContent = response.Student.fname
                 document.querySelector("#stu_mname").textContent = response.Student.mname
                 document.querySelector("#stu_lname").textContent = response.Student.lname
+                document.querySelector("#stu_gender").textContent = response.Student.gender
+                document.querySelector("#stu_dob").textContent = dob.toLocaleDateString('en-us', option)
+                document.querySelector("#stu_cstatus").textContent = response.Student.civilStatus
+                document.querySelector("#stu_nationality").textContent = response.Student.nationality
+                document.querySelector("#stu_course").textContent = response.Student.course
+                document.querySelector("#stu_phoneNumber").textContent = response.Student.phoneNumber
+                document.querySelector("#stu_email").textContent = response.Student.email
+                document.querySelector("#stu_street").textContent = response.Student.street
+                document.querySelector("#stu_city").textContent = response.Student.city
+                document.querySelector("#stu_state").textContent = response.Student.stateProvince
+                document.querySelector("#stu_zipCode").textContent = response.Student.zipCode
+                if(response.Student.photo !== "default.png"){
+                    document.querySelector("#stu_studentPhoto").src = `./img/${response.Student.photo}`
+                }
+                else{
+                    document.querySelector("#stu_studentPhoto").src = `./img/default/${response.Student.photo}`
+                }
 
             })
         })
