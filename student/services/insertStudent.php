@@ -59,6 +59,7 @@
         echo json_encode(array("status" => "Failed"));
     }
 
+    $connection->close();
 
     
 ?>

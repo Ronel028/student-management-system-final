@@ -43,7 +43,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php if ($studentList > 0) { ?>
+                                                    <?php if (count($studentList) > 0) { ?>
                                                         <?php foreach ($studentList as $student) { ?>
                                                             <tr>
                                                                 <td class="py-1">
@@ -72,6 +72,7 @@
                                                                     </button>
                                                                     <a 
                                                                         class="btn btn-warning m-0 d-flex items-center"
+                                                                        href="./updateStudent.php?studentID=<?php echo $student['id'] ?>"
                                                                     >
                                                                         Edit
                                                                     </a>
@@ -84,6 +85,10 @@
                                                                 </td>
                                                             </tr>
                                                         <?php } ?>
+                                                    <?php } else { ?>
+                                                        <tr>
+                                                            <td colspan="5" class="text-center">No student data available</td>
+                                                        </tr>
                                                     <?php } ?>
                                                 </tbody>
                                             </table>

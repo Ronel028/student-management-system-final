@@ -1,15 +1,6 @@
 
 <?php include_once('../partials/head.php') ?>
     
-    <!-- this page for admin only    -->
-    <?php 
-        if(isset($_SESSION['role'])){
-            if($_SESSION['role'] !== "Admin"){
-                header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/student/student_list.php");
-            }
-        }
-    ?>
-    
     <div class="container-scroller">
 
         <!-- navigation -->
@@ -27,15 +18,17 @@
 
                                 <!-- title -->
                                 <div class="statistics-details d-flex align-items-center justify-content-between">
-                                    <h2>Add Student</h2>
+                                    <h2>Update Student -> Ronel Florida</h2>
                                 </div>
+
+                                <!-- import update student file -->
+                                <?php include_once("./services/updateStudent.php") ?>
 
                                 <!-- content -->
                                 <!-- student list -->
                                 <div class="col-12 grid-margin">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h4 class="card-title">Add new student</h4>
                                             <p class="card-description">Personal information</p>
 
                                             <!-- error message if have -->
@@ -54,6 +47,8 @@
                                                                 class="form-control px-2"
                                                                 id="studentNumber"
                                                                 name="studentNumber"
+                                                                disabled
+                                                                value="<?php echo $student['student_id'] ?>"
                                                             >
                                                         </div>
                                                     </div>
@@ -67,6 +62,7 @@
                                                                 class="form-control px-2"
                                                                 id="fname"
                                                                 name="fname"
+                                                                value="<?php echo $student['fname'] ?>"
                                                             >
                                                         </div>
                                                     </div>
@@ -78,6 +74,7 @@
                                                                 class="form-control px-2"
                                                                 id="mname"
                                                                 name="mname"
+                                                                value="<?php echo $student['mname'] ?>"
                                                             >
                                                         </div>
                                                     </div>
@@ -89,6 +86,7 @@
                                                                 class="form-control px-2"
                                                                 id="lname"
                                                                 name="lname"
+                                                                value="<?php echo $student['lname'] ?>"
                                                             >
                                                         </div>
                                                     </div>
@@ -98,9 +96,22 @@
                                                         <div class="form-group">
                                                             <label for="gender">Gender</label>
                                                             <select id="gender" class="form-control px-2" name="gender">
-                                                                <option value="">---SELECT GENDER---</option>
-                                                                <option value="Male">Male</option>
-                                                                <option value="Female">Female</option>
+                                                                <option 
+                                                                    value="Male"
+                                                                    <?php if ($student['gender'] === "Male") { ?>
+                                                                        selected
+                                                                    <?php } ?>
+                                                                >
+                                                                Male
+                                                                </option>
+                                                                <option 
+                                                                    value="Female"
+                                                                    <?php if ($student['gender'] === "Female") { ?>
+                                                                        selected
+                                                                    <?php } ?>
+                                                                >
+                                                                    Female
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -112,6 +123,7 @@
                                                                 class="form-control py-0 px-2"
                                                                 id="dateOfBirth"
                                                                 name="dateOfBirth"
+                                                                value="<?php echo $student['dateOfBirth'] ?>"
                                                             >
                                                         </div>
                                                     </div>
@@ -121,11 +133,38 @@
                                                         <div class="form-group">
                                                             <label for="cstatus">Civil Status</label>
                                                             <select class="form-control" id="cstatus" name="cstatus">
-                                                                <option value="">---SELECT CIVIL STATUS---</option>
-                                                                <option value="Single">Single</option>
-                                                                <option value="Married">Married</option>
-                                                                <option value="Widow">Widow</option>
-                                                                <option value="Separated">Separated</option>
+                                                                <option 
+                                                                    value="Single"
+                                                                    <?php if ($student['civilStatus'] === "Single") { ?>
+                                                                        selected
+                                                                    <?php } ?>
+                                                                >
+                                                                    Single
+                                                                </option>
+                                                                <option 
+                                                                    value="Married"
+                                                                    <?php if ($student['civilStatus'] === "Married") { ?>
+                                                                        selected
+                                                                    <?php } ?>
+                                                                >
+                                                                    Married
+                                                                </option>
+                                                                <option 
+                                                                    value="Widow"
+                                                                    <?php if ($student['civilStatus'] === "Widow") { ?>
+                                                                        selected
+                                                                    <?php } ?>
+                                                                >
+                                                                    Widow
+                                                                </option>
+                                                                <option 
+                                                                    value="Separated"
+                                                                    <?php if ($student['civilStatus'] === "Separated") { ?>
+                                                                        selected
+                                                                    <?php } ?>
+                                                                >
+                                                                    Separated
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -137,6 +176,7 @@
                                                                 class="form-control px-2"
                                                                 id="nationality"
                                                                 name="nationality"
+                                                                value="<?php echo $student['nationality'] ?>"
                                                             >
                                                         </div>
                                                     </div>
@@ -248,7 +288,7 @@
                                                         class="text-light btn-primary border-0 py-2 px-3"
                                                         name="add_student"
                                                     >
-                                                        ADD STUDENT
+                                                        UPDATE STUDENT
                                                     </button>
                                                 </div>
                                             </form>
@@ -278,7 +318,7 @@
     </div>
 
     <!-- code for submit form data and avoid reload page -->
-    <script>
+    <!-- <script>
 
         const studentForm = document.querySelector("#student_form")
         const message = document.querySelector("#msg")
@@ -323,6 +363,6 @@
                 document.querySelector("#postalCode").value = ""
             }
         });
-    </script>
+    </script> -->
 
 <?php include_once('../partials/footer.php') ?>
