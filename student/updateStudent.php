@@ -1,6 +1,6 @@
 
 <?php include_once('../partials/head.php') ?>
-    
+<?php ob_start() ?>
     <div class="container-scroller">
 
         <!-- navigation -->
@@ -37,17 +37,16 @@
                                             </p>
 
                                             <!-- add student form -->
-                                            <form class="form-sample" id="student_form" name="student_form" enctype="multipart/form-data">
+                                            <form class="form-sample" id="student_form" name="student_form" enctype="multipart/form-data" method="post">
                                                 <div>
                                                     <div>
                                                         <div class="form-group">
-                                                            <label for="studentNumber">Student ID Number</label>
+                                                            <label for="u_studentNumber">Student ID Number</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="studentNumber"
-                                                                name="studentNumber"
-                                                                disabled
+                                                                id="u_studentNumber"
+                                                                name="u_studentNumber"
                                                                 value="<?php echo $student['student_id'] ?>"
                                                             >
                                                         </div>
@@ -56,36 +55,36 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="fname">First Name</label>
+                                                            <label for="u_fname">First Name</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="fname"
-                                                                name="fname"
+                                                                id="u_fname"
+                                                                name="u_fname"
                                                                 value="<?php echo $student['fname'] ?>"
                                                             >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="mname">Middle Name</label>
+                                                            <label for="u_mname">Middle Name</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="mname"
-                                                                name="mname"
+                                                                id="u_mname"
+                                                                name="u_mname"
                                                                 value="<?php echo $student['mname'] ?>"
                                                             >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label for="lname">Last Name</label>
+                                                            <label for="u_lname">Last Name</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="lname"
-                                                                name="lname"
+                                                                id="u_lname"
+                                                                name="u_lname"
                                                                 value="<?php echo $student['lname'] ?>"
                                                             >
                                                         </div>
@@ -94,8 +93,8 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="gender">Gender</label>
-                                                            <select id="gender" class="form-control px-2" name="gender">
+                                                            <label for="u_gender">Gender</label>
+                                                            <select class="form-control px-2" id="u_gender" name="u_gender">
                                                                 <option 
                                                                     value="Male"
                                                                     <?php if ($student['gender'] === "Male") { ?>
@@ -117,12 +116,12 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="dateOfBirth">Date of Birth</label>
+                                                            <label for="u_dateOfBirth">Date of Birth</label>
                                                             <input 
                                                                 type="date" 
                                                                 class="form-control py-0 px-2"
-                                                                id="dateOfBirth"
-                                                                name="dateOfBirth"
+                                                                id="u_dateOfBirth"
+                                                                name="u_dateOfBirth"
                                                                 value="<?php echo $student['dateOfBirth'] ?>"
                                                             >
                                                         </div>
@@ -131,8 +130,8 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="cstatus">Civil Status</label>
-                                                            <select class="form-control" id="cstatus" name="cstatus">
+                                                            <label for="u_cstatus">Civil Status</label>
+                                                            <select class="form-control" id="u_cstatus" name="u_cstatus">
                                                                 <option 
                                                                     value="Single"
                                                                     <?php if ($student['civilStatus'] === "Single") { ?>
@@ -170,12 +169,12 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="nationality">Nationality</label>
+                                                            <label for="u_nationality">Nationality</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="nationality"
-                                                                name="nationality"
+                                                                id="u_nationality"
+                                                                name="u_nationality"
                                                                 value="<?php echo $student['nationality'] ?>"
                                                             >
                                                         </div>
@@ -183,22 +182,39 @@
                                                 </div>
                                                 <div>
                                                     <div class="form-group">
-                                                        <label for="student_photo">Photo</label>
+                                                        <label for="u_student_photo">Photo</label>
                                                         <input 
                                                             type="file" 
                                                             class="form-control h-auto px-2" 
-                                                            id="student_photo" 
-                                                            name="student_photo"
+                                                            id="u_student_photo" 
+                                                            name="u_student_photo"
                                                         >
                                                     </div>
                                                 </div>
                                                 <div>
+
+                                                    <!-- temporary data for course -->
+                                                    <?php
+                                                        $course = array(
+                                                            array("BSIT", "BSIT(Bachelor of Science in Information Technology)"),
+                                                            array("BSBA", "BSBA(Bachelor of Science in Business Administration)")
+                                                        );
+                                                    ?>
+                                                    <!-- temporary data for course -->
+
                                                     <div class="form-group">
-                                                        <label for="course">Course</label>
-                                                        <select id="course" class="form-control px-2" name="course">
-                                                            <option value="">---SELECT COURSE---</option>
-                                                            <option value="BSIT">BSIT(Bachelor of Science in Information Technology)</option>
-                                                            <option value="BSBA">BSBA(Bachelor of Science in Business Administration)</option>
+                                                        <label for="u_course">Course</label>
+                                                        <select id="u_course" class="form-control px-2" name="u_course">
+                                                            <?php foreach ($course as $item) { ?>
+                                                                <option 
+                                                                    value="<?php echo $item[0] ?>"
+                                                                    <?php if ($student['course'] === $item[0]) { ?>
+                                                                        selected
+                                                                    <?php } ?>
+                                                                >
+                                                                    <?php echo $item[1] ?>
+                                                                </option>
+                                                            <?php } ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -209,23 +225,25 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="phoneNumber">Phone Number</label>
+                                                            <label for="u_phoneNumber">Phone Number</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="phoneNumber"
-                                                                name="phoneNumber"
+                                                                id="u_phoneNumber"
+                                                                name="u_phoneNumber"
+                                                                value="<?php echo $student['phoneNumber'] ?>"
                                                             >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="email">Email</label>
+                                                            <label for="u_email">Email</label>
                                                             <input 
-                                                                type="text" 
+                                                                type="email" 
                                                                 class="form-control px-2"
-                                                                id="email"
-                                                                name="email"
+                                                                id="u_email"
+                                                                name="u_email"
+                                                                value="<?php echo $student['email'] ?>"
                                                             >
                                                         </div>
                                                     </div>
@@ -236,23 +254,25 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="street">Street</label>
+                                                            <label for="u_street">Street</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="street"
-                                                                name="street"
+                                                                id="u_street"
+                                                                name="u_street"
+                                                                value="<?php echo $student['street'] ?>"
                                                             >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="city">City</label>
+                                                            <label for="u_city">City</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="city"
-                                                                name="city"
+                                                                id="u_city"
+                                                                name="u_city"
+                                                                value="<?php echo $student['city'] ?>"
                                                             >
                                                         </div>
                                                     </div>
@@ -260,23 +280,25 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="stateProvince">State/Province</label>
+                                                            <label for="u_stateProvince">State/Province</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="stateProvince"
-                                                                name="stateProvince"
+                                                                id="u_stateProvince"
+                                                                name="u_stateProvince"
+                                                                value="<?php echo $student['stateProvince'] ?>"
                                                             >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="postalCode">Zip/Postal Code</label>
+                                                            <label for="u_postalCode">Zip/Postal Code</label>
                                                             <input 
                                                                 type="text" 
                                                                 class="form-control px-2"
-                                                                id="postalCode"
-                                                                name="postalCode"
+                                                                id="u_postalCode"
+                                                                name="u_postalCode"
+                                                                value="<?php echo $student['zipCode'] ?>"
                                                             >
                                                         </div>
                                                     </div>
@@ -286,7 +308,7 @@
                                                     <button 
                                                         type="submit" 
                                                         class="text-light btn-primary border-0 py-2 px-3"
-                                                        name="add_student"
+                                                        name="update_student"
                                                     >
                                                         UPDATE STUDENT
                                                     </button>
