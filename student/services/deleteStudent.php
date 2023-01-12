@@ -20,7 +20,7 @@
 
     if($deleteStudent){
         unlink('../img/' . $studentPhoto);
-        header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/student/student_list.php");
+        echo json_encode(array("msg" => "success"));
     }
 
     $connection->close();

@@ -27,6 +27,14 @@
 
                                 <?php include_once('./services/getStudent.php') ?>
 
+                                <?php if(isset($_SESSION['updateStudent'])){ ?>
+                                    <div class="mb-3">
+                                        <?php 
+                                            echo $_SESSION['updateStudent'];
+                                            unset($_SESSION['updateStudent']);                                        ?>
+                                    </div>
+                                <?php } ?>
+
                                 <!-- content -->
                                 <!-- student list -->
                                 <div class="card">
@@ -76,12 +84,13 @@
                                                                     >
                                                                         Edit
                                                                     </a>
-                                                                    <a 
+                                                                    <button 
                                                                         class="btn btn-danger m-0 d-flex items-center"
-                                                                        href="./services/deleteStudent.php?student=<?php echo $student['id'] ?>"
+                                                                        id="deleteStudent"
+                                                                        data-studentid="<?php echo $student['id'] ?>"
                                                                     >
                                                                         Delete
-                                                                    </a>
+                                                                    </button>
                                                                 </td>
                                                             </tr>
                                                         <?php } ?>
@@ -98,7 +107,7 @@
                                 <!-- student list -->
 
                                 <!-- modal -->
-                                    <div class="modal fade" id="student" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="student" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -194,10 +203,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -225,7 +230,6 @@
 
     <script>
         const studentData = document.querySelectorAll("#studentData")
-        console.log(studentData)
         studentData.forEach(viewData =>{
             viewData.addEventListener('click', async() =>{
                 const userID = viewData.getAttribute('data-user-id')
@@ -260,6 +264,36 @@
 
             })
         })
+
+
+        // delete student
+        const deleteStudent = document.querySelectorAll("#deleteStudent")
+
+        deleteStudent.forEach(student =>{
+            student.addEventListener('click', async() =>{
+                const studentID = student.getAttribute('data-studentid')
+
+                if(window.confirm("Do you want to delete this student?")){
+                    try {
+                        const delStudent = await fetch(`./services/deleteStudent.php?student=${studentID}`, {
+                            method: 'DELETE'
+                        })
+                        const response = await delStudent.json()
+        
+                        if(response.msg === "success"){
+                            window.location.reload()
+                        }
+                    } catch (error) {
+                        window.alert("Something is wrong deleting this student!")
+                    }
+                }else{
+                    return
+                }
+
+            })
+            
+        })
+
     </script>
 
 <?php include_once('../partials/footer.php') ?>
