@@ -41,12 +41,19 @@
                     <!-- this is visible for admin user only -->
                     <?php if (isset($_SESSION['role'])) { ?>
                         <?php if ($_SESSION['role'] === "Admin") { ?>
-                            <li class="nav-item"> <a class="nav-link" href="../student/add_student.php">Add Student</a></li>
+                            <li class="nav-item"> 
+                                <a class="nav-link" href="../student/add_student.php">Add Student</a>
+                            </li>
                         <?php } ?>
                     <?php } ?>
-                    
                 </ul>
             </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="../course/course.php">
+                <i class="menu-icon fa-solid mdi mdi-account-multiple"></i>
+                <span class="menu-title">Course</span>
+            </a>
         </li>
         <li class="nav-item nav-category">Forms and Datas</li>
         <li class="nav-item">
