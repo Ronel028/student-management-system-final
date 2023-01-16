@@ -1,5 +1,6 @@
 
 <?php include_once('../partials/head.php') ?>
+<?php ob_start() ?>
     
     <div class="container-scroller">
 
@@ -39,6 +40,17 @@
                                 </div>
 
                                 <!-- content -->
+
+                                <!-- message -->
+                                <div class="mb-3">
+                                    <?php if (isset($_SESSION['addCourse'])) { ?>
+                                        <?php 
+                                            echo $_SESSION['addCourse'];
+                                            unset($_SESSION['addCourse']);
+                                        ?>
+                                    <?php } ?>
+                                </div>
+
                                 <!-- student list -->
                                 <div class="card">
                                     <div class="card-body">
@@ -95,10 +107,13 @@
                                 </div>
                                 <!-- student list -->
 
+                                <!-- import insert course file -->
+                                <?php include_once('./services/insertCourse.php') ?>
+
                                 <!-- modal -->
                                 <div class="modal fade" id="course" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="modal-content">
+                                        <form class="modal-content" method="post">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="title">Course</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -126,9 +141,9 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary m-0 text-light">Save</button>
+                                                <button type="submit" class="btn btn-primary m-0 text-light" name="add_course">Save</button>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
 

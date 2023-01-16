@@ -1,4 +1,4 @@
-<?php
+<?php 
     include_once('../database/config.php');
 
     $courseList = array();
@@ -11,5 +11,7 @@
             $courseList[] = $course;
         }
     }
+
+    $connection->close();
 
 ?>

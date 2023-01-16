@@ -192,27 +192,21 @@
                                                     </div>
                                                 </div>
                                                 <div>
-
                                                     <!-- temporary data for course -->
-                                                    <?php
-                                                        $course = array(
-                                                            array("BSIT", "BSIT(Bachelor of Science in Information Technology)"),
-                                                            array("BSBA", "BSBA(Bachelor of Science in Business Administration)")
-                                                        );
-                                                    ?>
+                                                    <?php include_once('./services/getCourse.php');?>
                                                     <!-- temporary data for course -->
-
                                                     <div class="form-group">
                                                         <label for="u_course">Course</label>
                                                         <select id="u_course" class="form-control px-2" name="u_course">
-                                                            <?php foreach ($course as $item) { ?>
+                                                            <?php foreach ($courseList as $course) { ?>
                                                                 <option 
-                                                                    value="<?php echo $item[0] ?>"
-                                                                    <?php if ($student['course'] === $item[0]) { ?>
+                                                                    value="<?php echo $course['course'] ?>(<?php echo $course['abbreviation'] ?>)"
+                                                                    <?php $studentCourse = $course['course'].'('.$course['abbreviation'].')' ?>
+                                                                    <?php if ($student['course'] === $studentCourse) { ?>
                                                                         selected
                                                                     <?php } ?>
                                                                 >
-                                                                    <?php echo $item[1] ?>
+                                                                    <?php echo $course['course'] ?>(<?php echo $course['abbreviation'] ?>)
                                                                 </option>
                                                             <?php } ?>
                                                         </select>

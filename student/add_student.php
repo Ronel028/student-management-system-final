@@ -153,12 +153,19 @@
                                                     </div>
                                                 </div>
                                                 <div>
+                                                    <!-- get course from database -->
+                                                    <?php include_once('./services/getCourse.php') ?> 
                                                     <div class="form-group">
                                                         <label for="course">Course</label>
                                                         <select id="course" class="form-control px-2" name="course">
                                                             <option value="">---SELECT COURSE---</option>
-                                                            <option value="BSIT">BSIT(Bachelor of Science in Information Technology)</option>
-                                                            <option value="BSBA">BSBA(Bachelor of Science in Business Administration)</option>
+                                                            <?php if (count($courseList) > 0) { ?>
+                                                                <?php foreach ($courseList as $course) { ?>
+                                                                    <option value="<?php echo $course['course'] ?>(<?php echo $course['abbreviation'] ?>)">
+                                                                        <?php echo $course['course'] ?>(<?php echo $course['abbreviation'] ?>)
+                                                                    </option>
+                                                                <?php } ?>
+                                                            <?php } ?>
                                                         </select>
                                                     </div>
                                                 </div>

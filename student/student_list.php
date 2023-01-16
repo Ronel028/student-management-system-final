@@ -45,7 +45,7 @@
                                                     <tr>
                                                         <th>Photo</th>
                                                         <th>Name</th>
-                                                        <th>Course</th>
+                                                        <th>Email</th>
                                                         <th>Gender</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -65,7 +65,7 @@
                                                                     >
                                                                 </td>
                                                                 <td><?php echo $student['fname']." ".$student['lname'] ?></td>
-                                                                <td><?php echo $student['course'] ?></td>
+                                                                <td><?php echo $student['email'] ?></td>
                                                                 <td><?php echo $student['gender'] ?></td>
                                                                 <td class="d-flex items-center">
                                                                     <button 
@@ -165,7 +165,7 @@
                                                             <p class="fw-bold m-0">Nationality</p>
                                                             <p class="fs-6" id="stu_nationality"></p>
                                                         </div>
-                                                        <div class="col-4">
+                                                        <div class="col">
                                                             <p class="fw-bold m-0">Course</p>
                                                             <p class="fs-6" id="stu_course"></p>
                                                         </div>
