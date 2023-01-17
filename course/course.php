@@ -1,6 +1,15 @@
 
 <?php include_once('../partials/head.php') ?>
 <?php ob_start() ?>
+
+    <!-- validate if the user is not admin because this page is for admin only  -->
+    <?php 
+        if(isset($_SESSION['role'])){
+            if($_SESSION['role'] !== 'Admin'){
+                header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/dashboard/dashboard.php");
+            }
+        }
+    ?>
     
     <div class="container-scroller">
 
@@ -51,6 +60,11 @@
                                     <?php } ?>
                                 </div>
 
+                                <!-- error for failed delete -->
+                                <div class="mb-3">
+                                    <p class="text-danger" id="errorDeleteCourse"></p>
+                                </div>
+
                                 <!-- student list -->
                                 <div class="card">
                                     <div class="card-body">
@@ -71,14 +85,6 @@
                                                                 <td><?php echo $course['course'] ?></td>
                                                                 <td><?php echo $course['abbreviation'] ?></td>
                                                                 <td class="d-flex items-center">
-                                                                    <button 
-                                                                        class="btn btn-success btn-fw m-0 d-flex align-items-center"
-                                                                        id="studentData"
-                                                                        data-user-id=""
-                                                                    >
-                                                                        <i class="mdi mdi-eye m-0 me-1 d-flex align-items-center"></i>
-                                                                        View Student Data
-                                                                    </button>
                                                                     <a 
                                                                         class="btn btn-warning m-0 d-flex items-center"
                                                                         href="#"
@@ -87,8 +93,8 @@
                                                                     </a>
                                                                     <button 
                                                                         class="btn btn-danger m-0 d-flex items-center"
-                                                                        id="deleteStudent"
-                                                                        data-studentid=""
+                                                                        id="deleteCourse"
+                                                                        data-courseid="<?php echo $course['id'] ?>"
                                                                     >
                                                                         Delete
                                                                     </button>
@@ -165,5 +171,30 @@
         </div>
         
     </div>
+
+    <script>
+        const deleteCourseBtn = document.querySelectorAll('#deleteCourse')
+        deleteCourseBtn.forEach(deleteCourse =>{
+            deleteCourse.addEventListener('click', async() =>{
+                try {
+                    const courseID = deleteCourse.getAttribute('data-courseid')
+                    const delCourse = await fetch(`./services/deleteCourse.php?courseID=${courseID}`, {
+                        method: 'DELETE'
+                    })
+                    const response = await delCourse.json()
+                    if(response.msg){
+                        window.location.reload()
+                    }else{
+                        throw response.error;
+                    }
+                } catch (error) {
+                    document.querySelector("#errorDeleteCourse").textContent = error
+                    setTimeout(() =>{
+                        document.querySelector("#errorDeleteCourse").textContent = ''
+                    }, 2000)
+                }
+            })
+        })
+    </script>
 
 <?php include_once('../partials/footer.php') ?>

@@ -16,13 +16,14 @@
                         <div class="col-sm-12">
                             <div class="home-tab">
 
-                                <!-- title -->
-                                <div class="statistics-details d-flex align-items-center justify-content-between">
-                                    <h2>Update Student -> Ronel Florida</h2>
-                                </div>
-
                                 <!-- import update student file -->
                                 <?php include_once("./services/updateStudent.php") ?>
+
+                                <!-- title -->
+                                <div class="statistics-details d-flex align-items-center justify-content-between">
+                                    <h2>Update Student -> <?php echo $student['fname'].' '. $student['lname'] ?></h2>
+                                </div>
+
 
                                 <!-- content -->
                                 <!-- student list -->
