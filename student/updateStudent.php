@@ -194,20 +194,38 @@
                                                 </div>
                                                 <div>
                                                     <!-- temporary data for course -->
-                                                    <?php include_once('./services/getCourse.php');?>
+                                                    <?php include_once('./services/getCourse.php'); ?>
                                                     <!-- temporary data for course -->
                                                     <div class="form-group">
                                                         <label for="u_course">Course</label>
                                                         <select id="u_course" class="form-control px-2" name="u_course">
-                                                            <?php foreach ($courseList as $course) { ?>
-                                                                <option 
-                                                                    value="<?php echo $course['course'] ?>(<?php echo $course['abbreviation'] ?>)"
-                                                                    <?php $studentCourse = $course['course'].'('.$course['abbreviation'].')' ?>
-                                                                    <?php if ($student['course'] === $studentCourse) { ?>
-                                                                        selected
-                                                                    <?php } ?>
-                                                                >
-                                                                    <?php echo $course['course'] ?>(<?php echo $course['abbreviation'] ?>)
+                                                            <?php if(count($courseList) > 0 ) { ?>
+                                                                <?php foreach ($courseList as $course) { ?>
+                                                                    <option 
+                                                                        value="<?php echo $course['course'] ?>(<?php echo $course['abbreviation'] ?>)"
+                                                                        <?php $studentCourse = $course['course'].'('.$course['abbreviation'].')' ?>
+                                                                        <?php if ($student['course'] === $studentCourse) { ?>
+                                                                            selected
+                                                                        <?php } ?>
+                                                                    >
+                                                                        <?php echo $course['course'] ?>(<?php echo $course['abbreviation'] ?>)
+                                                                    </option>
+                                                                <?php } ?>
+                                                            <?php }else{ ?>
+                                                                <?php 
+                                                                    include_once('../database/config.php');
+                                                                    
+                                                                    $studentID = $_GET['studentID'];
+
+                                                                    // get student course data query
+                                                                    $getStudentCourseQuery = "SELECT course FROM student_list WHERE id=$studentID";
+                                                                    $getStudentCourse = $connection->query($getStudentCourseQuery);
+                                                                    $studentCourse = $getStudentCourse->fetch_assoc();
+
+                                                                    $connection->close();
+                                                                ?>
+                                                                <option value="<?php echo $studentCourse['course'] ?>">
+                                                                    <?php echo $studentCourse['course'] ?>
                                                                 </option>
                                                             <?php } ?>
                                                         </select>

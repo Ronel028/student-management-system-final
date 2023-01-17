@@ -12,6 +12,4 @@
         }
     }
 
-    $connection->close();
-
 ?>
