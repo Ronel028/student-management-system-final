@@ -32,7 +32,7 @@
             $_SESSION['id'] = $user['id'];
 
             // if log in success user can route from this url.
-            header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/dashboard/dashboard.php");
+            header("Location: http://".$_SERVER['HTTP_HOST']."/sms/dashboard/dashboard.php");
         }else{
             $_SESSION['loginError'] = "Email/Password not match!";
             return;

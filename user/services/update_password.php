@@ -48,10 +48,10 @@
             $updateQuery = "UPDATE `account` SET `password`= '$hashPassword' WHERE id=$userID";
             
             if($connection->query($updateQuery)){
-                header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/user/user_list.php");
+                header("Location: http://".$_SERVER['HTTP_HOST']."/sms/user/user_list.php");
                 $_SESSION['updatePassword'] = "<p class='text-success'>Password Update Successfully.</p>";
             }else{
-                header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/user/user_list.php");
+                header("Location: http://".$_SERVER['HTTP_HOST']."/sms/user/user_list.php");
                 $_SESSION['updatePassword'] = "<p class='text-danger'>Update Password Failed.</p>";
             }
 

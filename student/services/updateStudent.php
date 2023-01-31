@@ -48,10 +48,10 @@
                                                     WHERE id=$studentID";
         if($connection->query($updateStudentQuery)){
             $_SESSION['updateStudent'] = "<p class='text-success'>Update Student Successful.</p>";
-            header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/student/student_list.php");
+            header("Location: http://".$_SERVER['HTTP_HOST']."/sms/student/student_list.php");
         }else{
             $_SESSION['updateStudent'] = "<p class='text-success'>Update Student Failed.</p>";
-            header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/student/updateStudent.php");
+            header("Location: http://".$_SERVER['HTTP_HOST']."/sms/student/updateStudent.php");
         }
 
     }

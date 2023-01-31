@@ -5,7 +5,7 @@
     <?php 
         if(isset($_SESSION['role'])){
             if($_SESSION['role'] !== "Admin"){
-                header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/student/student_list.php");
+                header("Location: http://".$_SERVER['HTTP_HOST']."/sms/student/student_list.php");
             }
         }
     ?>

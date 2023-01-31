@@ -81,10 +81,10 @@
                                     VALUES ('$fname','$lname','$gender','$role','$email','$hashPassword', '$userPhoto')";
 
             if($connection->query($insertUser)){
-                header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/user/user_list.php");
+                header("Location: http://".$_SERVER['HTTP_HOST']."/sms/user/user_list.php");
                 $_SESSION['registerUser'] = "<p class='text-success'>Registered Successfully.</p>";
             }else{
-                header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/user/add_user.php");
+                header("Location: http://".$_SERVER['HTTP_HOST']."/sms/user/add_user.php");
                 $_SESSION['registerUser'] = "<p class='text-danger'>Register Failed.</p>";
             }
 

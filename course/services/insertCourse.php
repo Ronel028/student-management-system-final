@@ -17,7 +17,7 @@
                                     VALUES ('$courseTitle','$courseAbbr')";
 
         if($connection->query($insertCourse)){
-            header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/course/course.php");
+            header("Location: http://".$_SERVER['HTTP_HOST']."/sms/course/course.php");
             $_SESSION['addCourse'] = "<p class='text-success'>Course added Succesfully.</p>";
         }else{
             $_SESSION['addCourse'] = "<p class='text-danger'>Course added failed</p>";

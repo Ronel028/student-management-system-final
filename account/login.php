@@ -3,7 +3,7 @@
 <!-- if user is already login he/she cannot back to this page -->
 <?php
     if(isset($_SESSION['role'])){
-        header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/dashboard/dashboard.php");
+        header("Location: http://".$_SERVER['HTTP_HOST']."/sms/dashboard/dashboard.php");
     }
 ?>
 

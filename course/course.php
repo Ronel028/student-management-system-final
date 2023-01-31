@@ -41,7 +41,7 @@
                                     <button 
                                         class="btn btn-primary m-0 d-flex items-center text-light"
                                         data-bs-toggle="modal" 
-                                        data-bs-target="#course"
+                                        data-bs-target="#addNewCourse"
                                     >
                                         <i class="mdi mdi-plus m-0 me-1 d-flex align-items-center"></i>
                                         Add Course
@@ -85,12 +85,15 @@
                                                                 <td><?php echo $course['course'] ?></td>
                                                                 <td><?php echo $course['abbreviation'] ?></td>
                                                                 <td class="d-flex items-center">
-                                                                    <a 
+                                                                    <button 
                                                                         class="btn btn-warning m-0 d-flex items-center"
-                                                                        href="#"
+                                                                        id="updateCourse"
+                                                                        data-bs-toggle="modal" 
+                                                                        data-bs-target="#update"
+                                                                        data-courseid=<?php echo $course['id'] ?>
                                                                     >
                                                                         Edit
-                                                                    </a>
+                                                                    </button>
                                                                     <button 
                                                                         class="btn btn-danger m-0 d-flex items-center"
                                                                         id="deleteCourse"
@@ -113,11 +116,46 @@
                                 </div>
                                 <!-- student list -->
 
+                                <!-- modal for update course data -->
+                                <div class="modal fade" id="update" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <form class="modal-content" id="updateCourseData">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="title">Update Course</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-4">
+                                                    <label for="course" class="mb-2">Course</label>
+                                                    <input 
+                                                        type="text" 
+                                                        class="form-control px-2"
+                                                        id="update_Course"
+                                                        name="update_Course"
+                                                    >
+                                                </div>
+                                                <div>
+                                                    <label for="abbreviation" class="mb-2">Abbreviation</label>
+                                                    <input 
+                                                        type="text" 
+                                                        class="form-control px-2"
+                                                        id="update_Abbreviation"
+                                                        name="update_Abbreviation"
+                                                    >
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary m-0 text-light" name="update_course">Update Course</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
                                 <!-- import insert course file -->
                                 <?php include_once('./services/insertCourse.php') ?>
 
-                                <!-- modal -->
-                                <div class="modal fade" id="course" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <!-- modal for inserting course data -->
+                                <div class="modal fade" id="addNewCourse" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <form class="modal-content" method="post">
                                             <div class="modal-header">
@@ -195,6 +233,41 @@
                 }
             })
         })
+
+        let courseID = null
+
+        // get course to display in modal
+        document.querySelectorAll("#updateCourse").forEach(updateCourse =>{
+            updateCourse.addEventListener('click', async function(){
+                courseID = this.getAttribute('data-courseid')
+                const course = await fetch(`./services/getCourseById.php?courseid=${courseID}`)
+                const response = await course.json()
+                console.log(response.data)
+                document.querySelector("#update_Course").value = response.data.course
+                document.querySelector("#update_Abbreviation").value = response.data.abbreviation
+            })
+        })
+
+
+        // update course
+        document.querySelector('#updateCourseData').addEventListener('submit', async function(e){
+            e.preventDefault()
+            const course = await fetch(`./services/updateCourse.php?courseid=${courseID}`, {
+                method: 'POST',
+                header: {
+                    "Content-Type": "multipart/form-data"
+                },
+                body: new FormData(document.querySelector('#updateCourseData'))
+            })
+            const response = await course.json()
+            if(response.Status === "Success"){
+                window.location.reload();
+            }else{
+                console.log(response)
+            }
+        })
+
+
     </script>
 
 <?php include_once('../partials/footer.php') ?>

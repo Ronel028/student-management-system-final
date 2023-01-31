@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['role'])){
-        header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/account/login.php");
+        header("Location: http://".$_SERVER['HTTP_HOST']."/sms/account/login.php");
     }
 ?>
 

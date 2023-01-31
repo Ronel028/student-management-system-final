@@ -77,11 +77,11 @@
                                         VALUES ('$fname','$lname','$role','$email','$hashPassword')";
     
             if($connection->query($sql)){
-                header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/account/login.php");
+                header("Location: http://".$_SERVER['HTTP_HOST']."/sms/account/login.php");
                 $_SESSION['registerUser'] = "Registered Successfully.";
             }else{
                 echo $connection->error();
-                header("Location: http://".$_SERVER['HTTP_HOST']."/SMS/account/register.php");
+                header("Location: http://".$_SERVER['HTTP_HOST']."/sms/account/register.php");
             }
         }
         
